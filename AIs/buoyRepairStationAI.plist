@@ -1,0 +1,58 @@
+{
+	GLOBAL = {ENTER = ("setStateTo: IDLE"); };
+	"CHECK_FOR_DEBRIS" = {
+		ATTACKED = (setTargetToPrimaryAggressor, increaseAlertLevel, "setStateTo: DEFENSE_MODE");
+		"OFFENCE_COMMITTED" = (setTargetToFoundTarget, "markTargetForOffence: 15", launchDefenseShip, increaseAlertLevel);
+		"ACCEPT_DISTRESS_CALL" = (setTargetToFoundTarget, "sendScriptMessage: callForHelp");
+		"INCOMING_MISSILE" = (fireECM, increaseAlertLevel);
+		"NOTHING_FOUND" = ("pauseAI: 10.0", "setStateTo: CHECK_FOR_MERCHANTMEN");
+		"TARGET_FOUND" = (launchScavenger, "setStateTo: CHECK_FOR_MERCHANTMEN");
+		UPDATE = (scanForLoot, "pauseAI: 10.0");
+	};
+	"CHECK_FOR_MERCHANTMEN" = {
+		ATTACKED = (setTargetToPrimaryAggressor, increaseAlertLevel, "setStateTo: DEFENSE_MODE");
+		"OFFENCE_COMMITTED" = (setTargetToFoundTarget, "markTargetForOffence: 15", launchDefenseShip, increaseAlertLevel);
+		"ACCEPT_DISTRESS_CALL" = (setTargetToFoundTarget, "sendScriptMessage: callForHelp");
+		"INCOMING_MISSILE" = (fireECM, increaseAlertLevel);
+		"NOTHING_FOUND" = ("setStateTo: IDLE");
+		"TARGET_FOUND" = ("rollD: 55", "setStateTo: IDLE");
+		"ROLL_1" = ("sendScriptMessage: launchTrader");
+		"ROLL_2" = ("sendScriptMessage: addShuttle");
+		"ROLL_3" = ("sendScriptMessage: addShuttle");
+		"ROLL_4" = ("sendScriptMessage: launchTugger");
+		"ROLL_5" = ("sendScriptMessage: launchTugger");
+		"ROLL_6" = ("sendScriptMessage: launchShuttle");
+		"ROLL_7" = ("sendScriptMessage: launchShuttle");
+		"ROLL_8" = ("sendScriptMessage: launchTrader");
+		"ROLL_9" = ("sendScriptMessage: addTugger");
+		"ROLL_10" = ("sendScriptMessage: launchController");
+		"ROLL_11" = ("sendScriptMessage: launchDocker");
+		UPDATE = ("scanForNearestShipWithRole: player");
+	};
+	"DEFENSE_MODE" = {
+		ATTACKED = (setTargetToPrimaryAggressor, increaseAlertLevel);
+		"CONDITION_GREEN" = ("setStateTo: CHECK_FOR_DEBRIS");
+		"CONDITION_YELLOW" = ("setStateTo: IDLE");
+		"ENERGY_FULL" = ("pauseAI: 20.0", "setStateTo: IDLE");
+		"ENERGY_LOW" = (launchDefenseShip);
+		ENTER = (checkTargetLegalStatus);
+		"INCOMING_MISSILE" = (fireECM, increaseAlertLevel);
+		"NO_TARGET" = ("pauseAI: 20.0", "setStateTo: IDLE");
+		"OFFENCE_COMMITTED" = (setTargetToFoundTarget, "markTargetForOffence: 15", launchDefenseShip, increaseAlertLevel);
+		"ACCEPT_DISTRESS_CALL" = (setTargetToFoundTarget, "sendScriptMessage: callForHelp");
+		"RED_ALERT" = (launchDefenseShip);
+		"YELLOW_ALERT" = ("setStateTo: IDLE");
+		"TARGET_DESTROYED" = ("pauseAI: 20.0", "setStateTo: IDLE");
+		"TARGET_FUGITIVE" = (increaseAlertLevel);
+		"TARGET_LOST" = ("pauseAI: 20.0", "setStateTo: IDLE");
+		"TARGET_OFFENDER" = (increaseAlertLevel);
+	};
+	IDLE = {
+		ATTACKED = (setTargetToPrimaryAggressor, increaseAlertLevel, "setStateTo: DEFENSE_MODE");
+		"ENERGY_LOW" = (launchDefenseShip, "setStateTo: CHECK_FOR_MERCHANTMEN");
+		"INCOMING_MISSILE" = (fireECM, increaseAlertLevel);
+		"OFFENCE_COMMITTED" = (setTargetToFoundTarget, "markTargetForOffence: 15", launchDefenseShip, increaseAlertLevel);
+		"ACCEPT_DISTRESS_CALL" = (setTargetToFoundTarget, "sendScriptMessage: callForHelp");
+		UPDATE = (decreaseAlertLevel, "pauseAI: 10.0", "setStateTo: CHECK_FOR_DEBRIS");
+	};
+}

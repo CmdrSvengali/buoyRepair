@@ -1,0 +1,16 @@
+{
+	GLOBAL = {
+		ATTACKED = (setTargetToPrimaryAggressor, broadcastDistressMessage);
+		ENTER = (switchLightsOff, "pauseAI: 5");
+		UPDATE = (switchLightsOn, performTumble, "setStateTo: IDLE");
+	};
+	IDLE = {
+		ATTACKED = (setTargetToPrimaryAggressor, broadcastDistressMessage);
+		ENTER = (performIdle);
+	};
+	LIGHTS_OFF = {
+		ATTACKED = (setTargetToPrimaryAggressor, broadcastDistressMessage);
+		ENTER = (switchLightsOff, "pauseAI: 5");
+		UPDATE = (switchLightsOn, performTumble, "setStateTo: IDLE");
+	};
+}

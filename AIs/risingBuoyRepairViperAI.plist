@@ -1,0 +1,44 @@
+{
+	GLOBAL = {ENTER = ("setSpeedTo: 0.0", switchLightsOff, "setStateTo: LIFT_OFF");};
+	"LIFT_OFF" = {
+		ENTER = ("pauseAI: 3.0", "sendScriptMessage: findGRSStation", setDestinationToTarget, "setDesiredRangeTo: 15000", "setSpeedFactorTo: 0.1", performFlyToRangeFromDestination);
+		UPDATE = ("pauseAI: 20.0", "setSpeedFactorTo: 0.3", "setStateTo: LEVEL_OFF");
+	};
+	"LEVEL_OFF" = {
+		UPDATE = ("pauseAI: 20.0", "setSpeedFactorTo: 0.5", "setStateTo: LEVEL_OFF2");
+	};
+	"LEVEL_OFF2" = {
+		UPDATE = ("pauseAI: 40.0", "setSpeedFactorTo: 0.8", "setStateTo: ENTER_SPACE");
+	};
+	"ENTER_SPACE" = {
+		ENTER = ("setDesiredRangeTo: 15000", "setSpeedFactorTo: 1.0", performFlyToRangeFromDestination);
+		"DESIRED_RANGE_ACHIEVED" = ("setStateTo: GO_TO_STATION");
+		UPDATE = ("pauseAI: 5.0");
+	};
+	"GO_TO_STATION" = {
+		ENTER = (setTargetToStation, "setDesiredRangeTo: 8000.0", setDestinationToTarget, checkCourseToDestination);
+		"WAYPOINT_SET" = ("setAITo: gotoWaypointAI.plist");
+		"COURSE_OK" = ("setSpeedFactorTo: 1.0", performFlyToRangeFromDestination);
+		"GRS_TARGET_RECEIVED" = ("markTargetForOffence: 7", "sendTargetCommsMessage: [GRS_Viper_Warning]", "setStateTo: ATTACK_SHIP");
+		"GRS_TARGET_LOST" = (switchLightsOff, "setAITo: fallingBuoyRepairShuttleAI.plist");
+		"RESTARTED" = ("setAITo: fallingBuoyRepairShuttleAI.plist");
+		"DESIRED_RANGE_ACHIEVED" = ("sendScriptMessage: requestTarget");
+		ATTACKED = (setTargetToPrimaryAggressor, broadcastDistressMessage, "setStateTo: FLEE");
+		"INCOMING_MISSILE" = (fightOrFleeMissile, "setStateTo: FLEE");
+		UPDATE = (setTargetToStation, "setDesiredRangeTo: 8000.0", setDestinationToTarget, checkCourseToDestination, "pauseAI: 5.0");
+	};
+	"ATTACK_SHIP" = {
+		"ENERGY_LOW" = ("setStateTo: FLEE");
+		ENTER = (switchLightsOn, performAttack);
+		"TARGET_CLOAKED" = (switchLightsOff, "setStateTo: GO_TO_STATION");
+		"INCOMING_MISSILE" = (fightOrFleeMissile, "setStateTo: FLEE");
+		"TARGET_DESTROYED" = (switchLightsOff, "setAITo: fallingBuoyRepairShuttleAI.plist");
+		"TARGET_LOST" = (switchLightsOff, "setAITo: fallingBuoyRepairShuttleAI.plist");
+	};
+	FLEE = {
+		"TARGET_LOST" = (performIdle, "setStateTo: GO_TO_STATION");
+		ENTER = ("setDesiredRangeTo: 25600", switchLightsOff, performFlee);
+		"INCOMING_MISSILE" = (fightOrFleeMissile, "setStateTo: FLEE");
+		"REACHED_SAFETY" = ("setSpeedTo: 0.0", performIdle, "pauseAI: 30.0", "setStateTo: GO_TO_STATION");
+	};
+}

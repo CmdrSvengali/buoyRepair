@@ -1,0 +1,193 @@
+{
+	GLOBAL = {
+		ENTER = ("setSpeedTo: 0.0", "pauseAI: 1");
+		UPDATE = ("setStateTo: HEAD_FOR_GRS_STATION");
+	};
+	"HEAD_FOR_GRS_STATION" = {
+		ENTER = ("setSpeedFactorTo: 0.25", switchLightsOn);
+		"COURSE_OK" = ("setSpeedFactorTo: 0.95", performFlyToRangeFromDestination);
+		"WAYPOINT_SET" = ("setStateTo: GO_TO_WAYPOINT_GRS");
+		"DESIRED_RANGE_ACHIEVED" = ("sendScriptMessage: requestClamp");
+		"GRS_FREE_CLAMP" = ("setStateTo: APPROACH_A");
+		"GRS_NO_FREE_CLAMP" = ("setStateTo: WAIT");
+		"NO_GRS_STATION" = ("setAITo: route2sunskimAI.plist");
+		"TARGET_FOUND" = (fightOrFleeHostiles);
+		"INCOMING_MISSILE" = (setTargetToPrimaryAggressor, broadcastDistressMessage, fightOrFleeMissile, fightOrFleeHostiles, "setStateTo: FLEE");
+		ATTACKED = (fightOrFleeHostiles);
+		FIGHTING = (setTargetToPrimaryAggressor, "setStateTo: ATTACK_SHIP");
+		FLEEING = (setTargetToPrimaryAggressor, "setStateTo: FLEE");
+		UPDATE = (
+			"sendScriptMessage: findGRSStation",
+			setDestinationToTarget,
+			"setDesiredRangeTo: 15000.0",
+			checkCourseToDestination,
+			scanForHostiles,
+			"pauseAI: 10.0"
+		);
+	};
+	"GO_TO_WAYPOINT_GRS" = {
+		ENTER = ("setDesiredRangeTo: 50.0", checkCourseToDestination);
+		"COURSE_OK" = ("setSpeedFactorTo: 0.5", performFlyToRangeFromDestination);
+		"WAYPOINT_SET" = ("setDesiredRangeTo: 50.0", checkCourseToDestination);
+		"DESIRED_RANGE_ACHIEVED" = ("setStateTo: HEAD_FOR_GRS_STATION");
+		"INCOMING_MISSILE" = (setTargetToPrimaryAggressor, broadcastDistressMessage, fightOrFleeMissile, fightOrFleeHostiles, "setStateTo: FLEE");
+		"TARGET_FOUND" = (fightOrFleeHostiles);
+		ATTACKED = (fightOrFleeHostiles);
+		FIGHTING = (setTargetToPrimaryAggressor, "setStateTo: ATTACK_SHIP");
+		FLEEING = (setTargetToPrimaryAggressor, "setStateTo: FLEE");
+		UPDATE = (scanForHostiles, "pauseAI: 10.0");
+	};
+	"APPROACH_A" = {
+		ENTER = ("pauseAI: 1");
+		"COURSE_OK" = ("setSpeedFactorTo: 0.7", performFlyToRangeFromDestination);
+		"WAYPOINT_SET" = ("setStateTo: GO_TO_WAYPOINT_A");
+		"DESIRED_RANGE_ACHIEVED" = ("sendScriptMessage: parkEscorts", "setStateTo: APPROACH_B");
+		FRUSTRATED = ("sendScriptMessage: parkEscorts", "setStateTo: APPROACH_B");
+		"GRS_NO_FREE_CLAMP" = ("setStateTo: WAIT");
+		"NO_GRS_STATION" = ("setAITo: route2sunskimAI.plist");
+		"INCOMING_MISSILE" = (setTargetToPrimaryAggressor, broadcastDistressMessage, fightOrFleeMissile);
+		ATTACKED = (setTargetToPrimaryAggressor, deployEscorts, broadcastDistressMessage);
+		RESTARTED = ("sendScriptMessage: setApproachA", "setDesiredRangeTo: 5000.0",
+			setDestinationFromCoordinates, checkCourseToDestination, "pauseAI: 10");
+		UPDATE = ("sendScriptMessage: setApproachA", "setDesiredRangeTo: 5000.0",
+			setDestinationFromCoordinates, checkCourseToDestination, "pauseAI: 10");
+	};
+	"GO_TO_WAYPOINT_A" = {
+		ENTER = ("setDesiredRangeTo: 50.0", checkCourseToDestination);
+		"COURSE_OK" = ("setSpeedFactorTo: 0.5", performFlyToRangeFromDestination);
+		"WAYPOINT_SET" = ("setDesiredRangeTo: 50.0", checkCourseToDestination);
+		"DESIRED_RANGE_ACHIEVED" = ("setStateTo: APPROACH_A");
+		FRUSTRATED = (performStop, "setStateTo: APPROACH_A");
+		ATTACKED = (fightOrFleeHostiles);
+		"INCOMING_MISSILE" = (setTargetToPrimaryAggressor, broadcastDistressMessage, fightOrFleeMissile, fightOrFleeHostiles, "setStateTo: FLEE");
+		"TARGET_FOUND" = (fightOrFleeHostiles);
+		FIGHTING = (setTargetToPrimaryAggressor, "setStateTo: ATTACK_SHIP");
+		FLEEING = (setTargetToPrimaryAggressor, "setStateTo: FLEE");
+		UPDATE = (scanForHostiles, "pauseAI: 10.0");
+	};
+	"APPROACH_B" = {
+		ENTER = ("sendScriptMessage: setApproachB", "setDesiredRangeTo: 10.0", "setSpeedTo: 60",
+			setDestinationFromCoordinates, performFlyToRangeFromDestination);
+		"DESIRED_RANGE_ACHIEVED" = ("sendScriptMessage: checkPlayerDistance");
+		"PLAYER_CLOSE" = ("setStateTo: APPROACH_C");
+		"PLAYER_FAR_AWAY" = ("setStateTo: GO_AWAY");
+		"FACING_DESTINATION" = ("setSpeedTo: 30", "setDesiredRangeTo: 15.0", performFlyToRangeFromDestination);
+		FRUSTRATED = (performFaceDestination);
+		"GRS_NO_FREE_CLAMP" = ("setStateTo: WAIT");
+		"NO_GRS_STATION" = ("setAITo: route2sunskimAI.plist");
+		"INCOMING_MISSILE" = (setTargetToPrimaryAggressor, broadcastDistressMessage, fightOrFleeMissile);
+		ATTACKED = (setTargetToPrimaryAggressor, deployEscorts, broadcastDistressMessage);
+	};
+	"APPROACH_C" = {
+		ENTER = ("sendScriptMessage: setApproachC", "setDesiredRangeTo: 5.0",
+			setDestinationFromCoordinates, performFaceDestination);
+		"FACING_DESTINATION" = ("setSpeedTo: 40", "setDesiredRangeTo: 10.0", performFlyToRangeFromDestination);
+		FRUSTRATED = (performFaceDestination);
+		ATTACKED = (setTargetToPrimaryAggressor, deployEscorts, broadcastDistressMessage);
+		"DESIRED_RANGE_ACHIEVED" = ("setStateTo: APPROACH_D");
+		"NO_GRS_STATION" = ("setAITo: route2sunskimAI.plist");
+		"COLLISION" = (performStop);
+		"ENERGY_LOW" = (performStop);
+		"ENERGY_FULL" = ("setStateTo: APPROACH_D");
+	};
+	"APPROACH_D" = {
+		ENTER = ("sendScriptMessage: setApproachD", "setDesiredRangeTo: 10.0", "setSpeedTo: 10",
+			setDestinationFromCoordinates, performFaceDestination);
+		"DESIRED_RANGE_ACHIEVED" = ("setStateTo: UNLOADING");
+		"FACING_DESTINATION" = ("setSpeedTo: 10", "setDesiredRangeTo: 10.0", performFlyToRangeFromDestination);
+		FRUSTRATED = (performFaceDestination);
+		ATTACKED = (setTargetToPrimaryAggressor, deployEscorts, broadcastDistressMessage);
+		"NO_GRS_STATION" = ("setAITo: route2sunskimAI.plist");
+		"COLLISION" = (performStop);
+		"ENERGY_LOW" = (performStop);
+		"ENERGY_FULL" = ("setStateTo: UNLOADING");
+	};
+	"UNLOADING" = {
+		ENTER = (performStop, "pauseAI: 120", switchLightsOff);
+		"ROLL_1" = ("sendScriptMessage: reverse", "setStateTo: REVERSE", switchLightsOn);
+		ATTACKED = ("sendScriptMessage: reverse", "setStateTo: REVERSE", switchLightsOn);
+		UPDATE = ("pauseAI: 30", "rollD: 5");
+	};
+	"REVERSE" = {
+		ENTER = ("pauseAI: 85");
+		UPDATE = ("sendScriptMessage: forward", "setStateTo: GO_AWAY");
+	};
+	"GO_AWAY" = {
+		ENTER = ("sendScriptMessage: setApproachE", "setDesiredRangeTo: 2000.0", "setSpeedFactorTo: 0.5",
+			setDestinationFromCoordinates, performFaceDestination, "pauseAI: 10");
+		"FACING_DESTINATION" = ("sendScriptMessage: resetClamp", "setSpeedFactorTo: 0.5", performFlyToRangeFromDestination);
+		"DESIRED_RANGE_ACHIEVED" = ("sendScriptMessage: callEscorts", "setStateTo: HEAD_FOR_SUN");
+		"NO_GRS_STATION" = ("setAITo: route2sunskimAI.plist");
+		ATTACKED = (setTargetToPrimaryAggressor, deployEscorts, broadcastDistressMessage);
+	};
+	"WAIT" = {
+		ENTER = (performStop, "pauseAI: 30");
+		"GRS_FREE_CLAMP" = ("setStateTo: APPROACH_A");
+		"NO_GRS_STATION" = ("setAITo: route2sunskimAI.plist");
+		ATTACKED = (fightOrFleeHostiles);
+		FIGHTING = (setTargetToPrimaryAggressor, "setStateTo: ATTACK_SHIP");
+		FLEEING = (setTargetToPrimaryAggressor, "setStateTo: FLEE");
+		UPDATE = ("sendScriptMessage: requestClamp", "pauseAI: 30");
+	};
+	FLEE = {
+		ENTER = ("setDesiredRangeTo: 25600", performFlee);
+		ATTACKED = (fightOrFleeHostiles);
+		FIGHTING = (setTargetToPrimaryAggressor, "setStateTo: ATTACK_SHIP");
+		FLEEING = (setTargetToPrimaryAggressor, "setStateTo: FLEE");
+		"TARGET_LOST" = (performIdle, "setStateTo: GLOBAL");
+		"TARGET_DESTROYED" = (performIdle, "setStateTo: GLOBAL");
+		"INCOMING_MISSILE" = (setTargetToPrimaryAggressor, broadcastDistressMessage, fightOrFleeMissile, fightOrFleeHostiles);
+		"REACHED_SAFETY" = (performIdle, "setStateTo: GLOBAL");
+	};
+	"ATTACK_SHIP" = {
+		ENTER = (broadcastDistressMessage, performAttack);
+		"ENERGY_LOW" = (setTargetToPrimaryAggressor, broadcastDistressMessage, "setStateTo: FLEE");
+		"INCOMING_MISSILE" = (setTargetToPrimaryAggressor, broadcastDistressMessage, fightOrFleeMissile, "setStateTo: FLEE");
+		"TARGET_DESTROYED" = ("setStateTo: HEAD_FOR_GRS_STATION");
+		"TARGET_LOST" = ("setStateTo: HEAD_FOR_GRS_STATION");
+	};
+	"HEAD_FOR_SUN" = {
+		ENTER = (setSunSkimStartCoordinates);
+		"WAIT_FOR_SUN" = ("pauseAI: 10.0", setSunSkimStartCoordinates);
+		"APPROACH_COORDINATES" = (setDestinationFromCoordinates, "setDesiredRangeTo: 50000", checkCourseToDestination);
+		"COURSE_OK" = ("setSpeedFactorTo: 0.80", performFlyToRangeFromDestination);
+		"WAYPOINT_SET" = ("setStateTo: GO_TO_WAYPOINT_SUN");
+		"CLOSE_TO_SUN" = ("sendScriptMessage: parkEscorts");
+		"DESIRED_RANGE_ACHIEVED" = ("setStateTo: GO_TO_SKIM");
+		ATTACKED = (fightOrFleeHostiles);
+		"INCOMING_MISSILE" = (setTargetToPrimaryAggressor, broadcastDistressMessage, fightOrFleeMissile, fightOrFleeHostiles, "setStateTo: FLEE");
+		FIGHTING = (setTargetToPrimaryAggressor, "setStateTo: ATTACK_SHIP");
+		FLEEING = (setTargetToPrimaryAggressor, "setStateTo: FLEE");
+	};
+	"GO_TO_WAYPOINT_SUN" = {
+		ENTER = ("setDesiredRangeTo: 50.0", checkCourseToDestination);
+		"COURSE_OK" = ("setSpeedFactorTo: 0.5", performFlyToRangeFromDestination);
+		"WAYPOINT_SET" = ("setDesiredRangeTo: 50.0", checkCourseToDestination);
+		"DESIRED_RANGE_ACHIEVED" = ("setStateTo: HEAD_FOR_SUN");
+		ATTACKED = (fightOrFleeHostiles);
+		"INCOMING_MISSILE" = (setTargetToPrimaryAggressor, broadcastDistressMessage, fightOrFleeMissile, fightOrFleeHostiles, "setStateTo: FLEE");
+		FIGHTING = (setTargetToPrimaryAggressor, "setStateTo: ATTACK_SHIP");
+		FLEEING = (setTargetToPrimaryAggressor, "setStateTo: FLEE");
+	};
+	"GO_TO_SKIM" = {
+		ENTER = (setSunSkimStartCoordinates, setDestinationFromCoordinates, "setDesiredRangeTo: 100", "setSpeedFactorTo: 3.0", performFlyToRangeFromDestination);
+		"DESIRED_RANGE_ACHIEVED" = ("setStateTo: SKIM_SUN");
+		"FRUSTRATED" = ("setStateTo: SKIM_SUN");
+	};
+	"SKIM_SUN" = {
+		ENTER = (setSunSkimEndCoordinates, setDestinationFromCoordinates, "setDesiredRangeTo: 50", "setSpeedFactorTo: 3.0", performFlyToRangeFromDestination);
+		"DESIRED_RANGE_ACHIEVED" = ("setStateTo: LEAVE_SUN");
+		"FRUSTRATED" = ("setStateTo: LEAVE_SUN");
+	};
+	"LEAVE_SUN" = {
+		ENTER = (setSunSkimExitCoordinates, setDestinationFromCoordinates, "setDesiredRangeTo: 250", "setSpeedFactorTo: 3.0", performFlyToRangeFromDestination);
+		"DESIRED_RANGE_ACHIEVED" = ("addFuel: 70", "setStateTo: HEAD_FOR_PLANET");
+		"FRUSTRATED" = ("addFuel: 70", "setStateTo: HEAD_FOR_PLANET");
+	};
+	"HEAD_FOR_PLANET" = {
+		ENTER = (setCourseToPlanet, "setDesiredRangeTo: 30000.0", "setSpeedFactorTo: 3.0", performFlyToRangeFromDestination);
+		"AEGIS_NONE" = ("addFuel: 70", "sendScriptMessage: callEscorts", "setStateTo: HEAD_FOR_GRS_STATION");
+		"LEAVING_SUN" = ("addFuel: 70", "sendScriptMessage: callEscorts", "setStateTo: HEAD_FOR_GRS_STATION");
+		"DESIRED_RANGE_ACHIEVED" = ("setStateTo: HEAD_FOR_GRS_STATION");
+	};
+}

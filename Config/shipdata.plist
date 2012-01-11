@@ -1,0 +1,516 @@
+{
+	"repaired-buoy-factory" = {
+		ai_type = "buoyRepairBuoyGAI.plist";
+		beacon = "grs-Factory-beacon";
+		max_flight_pitch = 0.3; max_flight_roll = 0.2;
+		like_ship = "buoy";
+		roles = "grs-factory-buoy";
+		scan_class = "CLASS_BUOY";
+		script = "buoyRepairBuoy.js";
+	};
+	"grs_big_woma" = {
+		ai_type = "grsFuelshipAI.plist";
+		escorts = 2;
+		exhaust = ("24.1 0 -119 14.4 22.5 10.8","-24.1 0 -119 14.4 22.5 10.8");
+		has_fuel_injection = 1;
+		has_scoop = 1;
+		heat_insulation = 5;
+		is_external_dependency = yes;
+		like_ship = "woma";
+		max_energy = 900;
+		max_flight_pitch = 0.2; max_flight_roll = 0.35;
+		max_flight_speed = 180;
+		model = "woma_grs.dat";
+		roles = "buoy_repair_woma_fuelship";
+		script = "buoyRepairDocker.js";
+		script_info = {grs_dockinglength = 900;};
+		subentities = ({subentity_key = "grs-womasilo"; orientation = (1,0,0,0); position = (27,18,0);},
+			{subentity_key = "grs-womasilo"; orientation = (1,0,0,0); position = (-27,18,0);},
+			{subentity_key = "grs-womasilo"; orientation = (1,0,0,0); position = (27,-18,0);},
+			{subentity_key = "grs-womasilo"; orientation = (1,0,0,0); position = (-27,-18,0);});
+	};
+	"grs-womasilo" = {
+		is_external_dependency = yes;
+		like_ship = "womasilo";
+		model = "womasilo_grs.dat";
+		roles = "grs-womasilo";
+	};
+	"grs_manOWar" = {
+		ai_type = "grsBigTraderAI.plist";
+		escorts = 2;
+		is_external_dependency = yes;
+		like_ship = "aquatics_manOWar";
+		roles = "buoy_repair_big_trader(0.3)";
+		script = "buoyRepairDocker.js";
+		script_info = {grs_dockinglength = 900;};
+	};
+	"grs_hawksbill" = {
+		ai_type = "grsFuelshipAI.plist";
+		escorts = 2;
+		has_fuel_injection = 1;
+		has_scoop = 1;
+		heat_insulation = 5;
+		is_external_dependency = yes;
+		like_ship = "aquatics_hawksbill";
+		roles = "buoy_repair_woma_fuelship(0.3)";
+		script = "buoyRepairDocker.js";
+		script_info = {grs_dockinglength = 900;};
+	};
+	"grs_guanako" = {
+		aft_eject_position = "0 -58.5 -162.45";
+		ai_type = "grsFuelshipAI.plist";
+		cargo_type = "CARGO_NOT_CARGO";
+		energy_recharge_rate = 3;
+		escorts = 2;
+		exhaust = ("23 7 -144 18 18 54","23 7 -144 14 14 39","-23 7 -144 18 18 54","-23 7 -144 14 14 39");
+		forward_weapon_type = "WEAPON_PULSE_LASER";
+		fuel = 280;
+		has_ecm = 0.75;
+		has_escape_pod = 0.75;
+		has_scoop = 1;
+		heat_insulation = 8;
+		materials = {"grs_guanako.png" = {normal_map = {"name"="grs_guanako_n.png";}; specular_color = (1,1,1,1);};};
+		max_cargo = 125;
+		max_energy = 1450;
+		max_flight_pitch = 0.15; max_flight_roll = 0.25;
+		max_flight_speed = 180;
+		missiles = 0;
+		model = "grs_guanako.dat";
+		name = "GRS Guanako";
+		roles = "buoy_repair_fuelship";
+		script = "buoyRepairDocker.js";
+		script_info = {grs_dockinglength = 950;};
+		subentities = ({type = flasher; size = 30; color = {hue = 180;}; frequency = 0; phase = 0; position = (23,7,-144);},
+			{type = flasher; size = 30; color = {hue = 180;}; frequency = 0; phase = 0; position = (-23,7,-144);});
+		thrust = 8;
+		weapon_position_forward = "0 -22.5 263";
+	};
+	"grs_guanako_trader" = {
+		ai_type = "grsBigTraderAI.plist";
+		cargo_carried = "SCARCE_GOODS";
+		escorts = 4;
+		heat_insulation = 1;
+		like_ship = "grs_guanako";
+		model = "grs_guanako.dat";
+		roles = "buoy_repair_big_trader bigTrader(0.5)";
+		script_info = {grs_dockinglength = 950;};
+	};
+	"grs_big_anaconda" = {
+		aft_eject_position = "0 -40 -134";
+		aft_weapon_type = "WEAPON_PULSE_LASER";
+		ai_type = "grsBigTraderAI.plist";
+		cargo_carried = "SCARCE_GOODS";
+		cargo_type = "CARGO_NOT_CARGO";
+		energy_recharge_rate = 3;
+		escort_ship = "cobramk1";
+		escorts = 6;
+		exhaust = ("-19.6 11.2 -157 20 20 16","19.6 11.2 -157 20 20 16");
+		forward_weapon_type = "WEAPON_PULSE_LASER";
+		fuel = 70;
+		has_ecm = 0.95;
+		has_escape_pod = 0.95;
+		has_scoop = 0.95;
+		heat_insulation = 3;
+		likely_cargo = 7;
+		max_cargo = 750;
+		max_energy = 900;
+		max_flight_pitch = 0.2; max_flight_roll = 0.35;
+		max_flight_speed = 140;
+		missile_launch_position = "0 -18 120";
+		missiles = 7;
+		model = "anaconda_grs.dat";
+		name = "Anaconda";
+		roles = "buoy_repair_big_trader big_anaconda";
+		script = "buoyRepairDocker.js";
+		script_info = {grs_dockinglength = 950;};
+		thrust = 9;
+		weapon_position_aft = "0 0 -170"; weapon_position_forward = "0 -8 170"; weapon_position_port = "-75 -8 -80"; weapon_position_starboard = "75 -8 -80";
+	};
+	"grs_big_boa2" = {
+		aft_eject_position = "0 -31.5 -101.5";
+		aft_weapon_type = "WEAPON_BEAM_LASER";
+		ai_type = "grsBigTraderAI.plist";
+		cargo_carried = "SCARCE_GOODS";
+		cargo_type = "CARGO_NOT_CARGO";
+		energy_recharge_rate = 3.2;
+		escorts = 2;
+		exhaust = ("-19.5 3 -115 44 44 40","19.5 3 -115 44 44 40");
+		heat_insulation = 3;
+		forward_weapon_type = "WEAPON_BEAM_LASER";
+		fuel = 70;
+		has_ecm = 0.95;
+		has_escape_pod = yes;
+		has_scoop = yes;
+		likely_cargo = 15;
+		max_cargo = 175;
+		max_energy = 800;
+		max_flight_pitch = 0.5; max_flight_roll = 1.2;
+		max_flight_speed = 312;
+		missile_launch_position = "0 -6 37";
+		missiles = 5;
+		model = "boa2_grs.dat";
+		name = "Boa Class Cruiser";
+		roles = "buoy_repair_big_trader big_boa";
+		script = "buoyRepairDocker.js";
+		script_info = {grs_dockinglength = 900;};
+		thrust = 18;
+		weapon_energy = 15;
+		weapon_position_aft = "0 17.25 -108.25"; weapon_position_forward = "0 16 115"; weapon_position_port = "-23.5 3.5 0"; weapon_position_starboard = "32.5 3.5 0";
+	};
+	"grs_cobra3_redux1" = {
+		aft_eject_position = "0 15.5 -33";
+		ai_type = "grsDockerAI.plist";
+		cargo_type = "CARGO_NOT_CARGO";
+		energy_recharge_rate = 3;
+		exhaust = ("-19 0 -32.5 15 7.5 12.5", "19 0 -32.5 15 7.5 12.5");
+		forward_weapon_type = "WEAPON_BEAM_LASER";
+		fuel = 70;
+		has_ecm = 0.95;
+		has_escape_pod = 0.95;
+		has_scoop = 0.95;
+		likely_cargo = 3;
+		max_cargo = 35;
+		max_energy = 250;
+		max_flight_pitch = 1; max_flight_roll = 2;
+		max_flight_speed = 320;
+		missile_launch_position = "0 -4.5 16.5";
+		missiles = 3;
+		model = "cobra3_redux1.dat";
+		max_flight_pitch = 0.5;
+		max_flight_roll = 1.2;
+		name = "Cobra Mark";
+		roles = "buoy_repair_docker";
+		script = "buoyRepairDocker.js";
+		script_info = {grs_dockinglength = 900;};
+		thrust = 32;
+		weapon_energy = 15;
+		weapon_position_aft = "0 0 -32.5"; weapon_position_forward = "0 0 27.5"; weapon_position_port = "-40 2.17 -4.33"; weapon_position_starboard = "40 2.17 -4.33";
+	};
+	"grs_controller" = {
+		ai_type = "grsStationControlAI.plist";
+		aft_eject_position = "0 -26 -30";
+		auto_ai = no;
+		bounty = 0;
+		cargo_type = "CARGO_NOT_CARGO";
+		energy_recharge_rate = 3;
+		exhaust = ("10 -0.8 -26.3 5 4 10","-10 -0.8 -26.3 5 4 10");
+		forward_weapon_type = "WEAPON_NONE";
+		frangible = false;
+		fuel = 70;
+		has_ecm = 1;
+		has_escape_pod = 1;
+		has_fuel_injection = 1;
+		has_shield_booster = 1;
+		has_shield_enhancer = 1;
+		has_scoop = 1;
+		laser_color = "whiteColor";
+		likely_cargo = 1;
+		materials = {"grs_controller.png" = {normal_map = {"name"="grs_controller_n.png";}; specular_color = (1,1,1,1);};};
+		max_cargo = 1;
+		max_energy = 550;
+		max_flight_pitch = 0.45; max_flight_roll = 0.55;
+		max_flight_speed = 80;
+		missiles = 0;
+		missile_launch_position = "0 -16 80";
+		model = "grs_controller.dat";
+		name = "GRS Controller";
+		roles = "buoy_repair_control grs_factory_defender grs_controller(0)";
+		scanner_range = 25000;
+		script = "buoyRepairControl.js";
+		subentities = ({type = flasher; size = 5; colors = ({hue = 22;},{hue = 60;}); frequency = 5; phase = 0.3; position = (-16,6,-23.3);},
+			{type = flasher; size = 5; colors = ({hue = 22;},{hue = 60;}); frequency = 5; phase = 0.6; position = (16,6,-23.3);},
+			{type = flasher; size = 5; colors = ({hue = 22;},{hue = 60;}); frequency = 5; phase = 0.9; position = (0,-7,11);},
+			{type = ball_turret; subentity_key = "grs_controller_turret"; orientation = (1,0,0,0); position = (0,-3.6,14.7); weapon_energy = 0.0;});
+		thrust = 15;
+		weapon_energy = 0;
+	};
+	"grs_controller_turret" = {
+		ai_type = "nullAI.plist";
+		laser_color = "whiteColor";
+		max_energy = 350;
+		model = "grs_controllturret.dat";
+		name = "GRS Controller Turret";
+		roles = "grs_controller_turret";
+		thrust = 0.3;
+		weapon_energy = 0.0;
+	};
+	"repaired-buoy-shuttle-d" = {
+		ai_type = "fallingBuoyRepairShuttleAI.plist";
+		like_ship = "shuttle";
+		name = "GRS Shuttle";
+		roles = "buoy_repair_shuttle";
+		script = "buoyRepairShuttle.js";
+	};
+	"repaired-buoy-shuttle-u" = {
+		ai_type = "risingBuoyRepairShuttleAI.plist";
+		like_ship = "shuttle";
+		name = "GRS Shuttle";
+		roles = "buoy_repair_shuttle_u";
+		script = "buoyRepairShuttle.js";
+	};
+	"repaired-buoy-tugjaw" = {
+		ai_type = "nullAI.plist";
+		cargo_type = "CARGO_NOT_CARGO";
+		energy_recharge_rate = 0.5;
+		forward_weapon_type = "WEAPON_NONE";
+		max_energy = 65;
+		model = "repairBuoy_tugjaw.dat";
+		name = "Tug Jaw";
+		roles = "grs_tugjaw";
+		script = "buoyRepairCable.js";
+		script_info = {can_explode = yes;};
+	};
+	"repaired-buoy-tugline" = {
+		ai_type = "nullAI.plist";
+		cargo_type = "CARGO_NOT_CARGO";
+		energy_recharge_rate = 0.5;
+		forward_weapon_type = "WEAPON_NONE";
+		max_energy = 45;
+		model = "repairBuoy_tugline.dat";
+		name = "Tug Line";
+		roles = "grs_tugline";
+		script = "buoyRepairCable.js";
+		script_info = {can_explode = yes;};
+	};
+	"repaired-buoy" = {
+		ai_type = "buoyRepairBuoyAI.plist";
+		beacon = "N0100 Navigation Buoy";
+		like_ship = "grs_buoy-base";
+		max_flight_pitch = 0.3; max_flight_roll = 0.2;
+		model = "buoy.dat";
+		name = "Navigation Buoy";
+		roles = "buoy(0) repaired-grs-buoy";
+		scan_class = "CLASS_BUOY";
+		script_info = {can_explode = yes;};
+	};
+	"repaired-buoy-witchpoint" = {
+		ai_type = "buoyRepairBuoyAI.plist";
+		like_ship = "buoy-witchpoint";
+		max_flight_pitch = 0.3; max_flight_roll = 0.2;
+		roles = "buoy-witchpoint(0.1) repaired-grs-buoy-witchpoint";
+		scan_class = "CLASS_BUOY";
+		script = "buoyRepairBuoy.js";
+		script_info = {can_explode = yes;};
+	};
+	"grs_buoy-base" = {
+		ai_type = "nullAI.plist";
+		cargo_type = "CARGO_NOT_CARGO";
+		energy_recharge_rate = 2;
+		materials = {"target_metal.png" = {ambient_color = (0.75, 0.75, 0.75); diffuse_color = (0.8, 0.8, 0.8); shininess = 20; specular_color = (0.8, 0.83, 0.85, 1.0);};};
+		max_energy = 250;
+		max_flight_pitch = 2;
+		max_flight_roll = 2;
+		max_flight_speed = 0;
+		model = "grs_buoy-base.dat";
+		name = "Navigation Buoy Segment";
+		roles = "grs_buoy_segment";
+		script_info = {can_explode = yes;};
+		smooth = yes;
+		thrust = 100;
+		unpiloted = yes;
+	};
+	"repaired-buoytugger" = {
+		aft_eject_position = "0 -22.1 -22";
+		ai_type = "buoyRepairShipAI.plist";
+		bounty = 0;
+		cargo_type = "CARGO_NOT_CARGO";
+		density = 0.3;
+		energy_recharge_rate = 2;
+		exhaust = ("16 -16.8 -7.1 7 7 12","-16 -16.8 -7.1 7 7 12");
+		forward_weapon_type = "WEAPON_BEAM_LASER";
+		frangible = true;
+		fuel = 70;
+		has_ecm = 1;
+		has_escape_pod = 1;
+		has_shield_enhancer = 1;
+		has_scoop = 1;
+		likely_cargo = 1;
+		materials = {"grs_armadillo.png" = {ambient_color = (0,0,0,0); diffuse_color = (0.6,0.6,0.6,1); diffuse_map = {"name"="grs_armadillo.png";}; illumination_map = {"name"="grs_armadillo.png";}; normal_map = {"name"="grs_armadillo_n.png";}; specular_color = (0.1,0.1,0.1,1); shininess = 28;};};
+		max_cargo = 20;
+		max_energy = 750;
+		max_flight_pitch = 0.4; max_flight_roll = 0.5;
+		max_flight_speed = 80;
+		missiles = 0;
+		model = "grs_armadillo.dat";
+		name = "GRS Armadillo";
+		roles = "repairBuoyTugger grs_factory_defender switchedRepairBuoyTugger";
+		script = "buoyRepairShip.js";
+		subentities = ({type = flasher; size = 5; colors = ({hue = 22;},{hue = 60;}); frequency = 5; phase = 0.2; position = (-17,28.2,50.3);},
+			{type = flasher; size = 5; colors = ({hue = 22;},{hue = 60;}); frequency = 5; phase = 0.7; position = (17,28.2,50.3);});
+		thrust = 15;
+		weapon_position_aft = "0 10 -65"; weapon_position_forward = "0 0 40"; weapon_position_port = "-26.67 0 4.33"; weapon_position_starboard = "26.67 0 4.33";
+	};
+	"repaired-buoytuggerE" = {
+		ai_type = "buoyRepairShipEAI.plist";
+		like_ship = "repaired-buoytugger";
+		roles = "repairBuoyTuggerE trader(0.1)";
+		script = "buoyRepairShip.js";
+		subentities = ({subentity_key = "repaired-buoy-tugline"; orientation = (1,0,0,0); position = (0,0,20);},
+			{subentity_key = "repaired-buoy-tugjaw"; orientation = (1,0,0,0); position = (0,0,-64.5);},
+			{subentity_key = "grs_buoy-base"; orientation = (1,0,0,0); position = (0,0,-115);},
+			{subentity_key = "grs_buoy-base"; orientation = (1,0,0,0); position = (0,0,-115);},
+			{subentity_key = "grs_buoy-base"; orientation = (1,0,0,0); position = (0,0,-115);},
+			{type = flasher; size = 5; colors = ({hue = 22;},{hue = 60;}); frequency = 5; phase = 0.2; position = (-17,28.2,50.3);},
+			{type = flasher; size = 5; colors = ({hue = 22;},{hue = 60;}); frequency = 5; phase = 0.7; position = (17,28.2,50.3);});
+	};
+	"repaired-buoytuggerG" = {
+		ai_type = "buoyRepairShipGAI.plist";
+		beacon = "grs-Factory-beacon";
+		like_ship = "repaired-buoytugger";
+		roles = "repairBuoyTuggerG";
+		script = "buoyRepairShip.js";
+		subentities = ({subentity_key = "repaired-buoy-tugline"; orientation = (1,0,0,0); position = (0,0,20);},
+			{subentity_key = "repaired-buoy-tugjaw"; orientation = (1,0,0,0); position = (0,0,-64.5);},
+			{subentity_key = "repaired-buoy-factory"; orientation = (1,0,0,0); position = (0,0,-115);},
+			{type = flasher; size = 5; colors = ({hue = 22;},{hue = 60;}); frequency = 5; phase = 0.2; position = (-17,28.2,50.3);},
+			{type = flasher; size = 5; colors = ({hue = 22;},{hue = 60;}); frequency = 5; phase = 0.7; position = (17,28.2,50.3);});
+	};
+	"repaired-buoytuggerN" = {
+		ai_type = "buoyRepairShipNWAI.plist";
+		beacon = "N0100 Navigation Buoy";
+		like_ship = "repaired-buoytugger";
+		roles = "repairBuoyTuggerN";
+		script = "buoyRepairShip.js";
+		subentities = ({subentity_key = "repaired-buoy-tugline"; orientation = (1,0,0,0); position = (0,0,20);},
+			{subentity_key = "repaired-buoy-tugjaw"; orientation = (1,0,0,0); position = (0,0,-64.5);},
+			{subentity_key = "grs_buoy-base"; orientation = (1,0,0,0); position = (0,0,-115);},
+			{subentity_key = "grs_buoy-base"; orientation = (1,0,0,0); position = (0,0,-115);},
+			{subentity_key = "grs_buoy-base"; orientation = (1,0,0,0); position = (0,0,-115);},
+			{type = flasher; size = 5; colors = ({hue = 22;},{hue = 60;}); frequency = 5; phase = 0.2; position = (-17,28.2,50.3);},
+			{type = flasher; size = 5; colors = ({hue = 22;},{hue = 60;}); frequency = 5; phase = 0.7; position = (17,28.2,50.3);});
+	};
+	"repaired-buoytuggerW" = {
+		ai_type = "buoyRepairShipNWAI.plist";
+		beacon = "W0100 Navigation Buoy (Witchpoint)";
+		like_ship = "repaired-buoytugger";
+		roles = "repairBuoyTuggerW";
+		script = "buoyRepairShip.js";
+		subentities = ({subentity_key = "repaired-buoy-tugline"; orientation = (1,0,0,0); position = (0,0,20);},
+			{subentity_key = "repaired-buoy-tugjaw"; orientation = (1,0,0,0); position = (0,0,-64.5);},
+			{subentity_key = "repaired-buoy"; orientation = (1,0,0,0); position = (0,0,-115);},
+			{type = flasher; size = 5; colors = ({hue = 22;},{hue = 60;}); frequency = 5; phase = 0.2; position = (-17,28.2,50.3);},
+			{type = flasher; size = 5; colors = ({hue = 22;},{hue = 60;}); frequency = 5; phase = 0.7; position = (17,28.2,50.3);});
+	};
+	"repaired-buoyViper" = {
+		ai_type = "risingBuoyRepairViperAI.plist";
+		like_ship = "viper";
+		roles = "buoy_repair_viper";
+		script = "buoyRepairViper.js";
+	};
+	"GRS-Station" = {
+		ai_type = "buoyRepairStationAI.plist";
+		cargo_type = "CARGO_NOT_CARGO";
+		defense_ship_role = "grs_factory_defender";
+		energy_recharge_rate = 100;
+		equipment_price_factor = 2.21;
+		equivalent_tech_level = 8;
+		forward_weapon_type = "WEAPON_NONE";
+		frangible = false;
+		fuel = 0;
+		has_ecm = 1;
+		has_npc_traffic = yes;
+		has_scoop = 0;
+		has_shipyard = 1;
+		market = "repaired-buoy-station";
+		materials = {"grs_main.png" = {diffuse_map = "grs_main.png"; normal_map = "grs_main_n.png"; emission_map = "grs_main_e.png";};};
+		max_defense_ships = 3;
+		max_energy = 50000;
+		max_flight_pitch = 0; max_flight_roll = 0;
+		max_flight_speed = 0;
+		max_police = 2;
+		max_scavengers = 3;
+		missiles = 0;
+		model = "grs_main.dat";
+		name = "GRS Buoy Factory";
+		roles = "repaired-buoy-station GRS-Station station";
+		rotating = false;
+		scan_class = "CLASS_STATION";
+		scanner_range = 25600;
+		script = "buoyRepairStation.js";
+		script_info = {"snoopersNews" = true; "bgs_music" = "buoyRepair_music.ogg";};
+		subentities = (
+			{subentity_key = "grs_dock"; is_dock = true; orientation = (1,0,0,0); position = (0,0,170);},
+			{subentity_key = "grs_bay"; orientation = (1,0,0,0); position = (0,0,0);},
+			{subentity_key = "grs_mainglow"; orientation = (1,0,0,0); position = (0,0,0);},
+			{subentity_key = "grs_platforms"; orientation = (1,0,0,0); position = (0,0,0);},
+			{subentity_key = "grs_reactor"; orientation = (1,0,0,0); position = (0,0,0);},
+			{subentity_key = "grs_living"; orientation = (1,0,0,0); position = (0,0,0);},
+			{subentity_key = "grs_ani"; orientation = (1,0,0,0); position = (0,0,0);},
+			// Guiding system
+			{type = flasher; size = 20; color = {hue = 180;}; frequency = 1; phase = 2.4; position = (0,0,685);},
+			{type = flasher; size = 20; color = {hue = 180;}; frequency = 1; phase = 1.6; position = (0,0,885);},
+			{type = flasher; size = 20; color = {hue = 180;}; frequency = 1; phase = 0.8; position = (0,0,1085);},
+			{type = flasher; size = 20; color = {hue = 180;}; frequency = 1; phase = 0; position = (0,0,1285);},
+			// Inside
+			{type = flasher; size = 30; color = {hue = 180;}; frequency = 1; phase = 0; position = (-150,-130,-120);},
+			{type = flasher; size = 20; color = {hue = 0;}; frequency = 0; phase = 0; position = (55,-150,-186);},
+			// Bottom
+			{type = flasher; size = 30; colors = (redColor,clearColor); frequency = 2; phase = 0; position = (0,-1420,0);}
+		);
+		thrust = 100;
+	};
+	"grs_dock" = {
+		ai_type = "nullAI.plist";
+		model = "grs_dock.dat";
+		name = "Dock";
+		roles = "grs_dock";
+	};
+	"grs_bay" = {
+		ai_type = "nullAI.plist";
+		materials = {"grs_bay.png" = {diffuse_map = "grs_bay_shadow.png"; illumination_map = "grs_bay_shadow.png"; shininess = 0; specular_color = (0.0,0.0,0.0,0.0);};};
+		model = "grs_bay.dat";
+		name = "Bay";
+		roles = "grs_bay";
+	};
+	"grs_mainglow" = {
+		ai_type = "nullAI.plist";
+		materials = {"grs_mainglow.png" = {diffuse_map = "grs_mainglow.png"; illumination_map = "grs_mainglow_e.png"; shininess = 0; specular_color = (0.0,0.0,0.0,0.0);};};
+		model = "grs_mainglow.dat";
+		name = "Glow";
+		roles = "grs_mainglow";
+		shaders = {"grs_mainglow.png" = {
+			vertex_shader = "grs_reactor.vertex";
+			fragment_shader = "grs_mainglow.fragment";
+			textures = ("grs_mainglow.png","grs_mainglow_e.png");
+			uniforms = {uDiffuseMap={type="texture";value=0;}; uIlluminationMap={type="texture";value=1;};
+				uFuel={binding = "fuel";}; uTime = "timeElapsedSinceSpawn";
+				uRange = {binding = "rangeToPrimaryTarget";}; uHostile = {binding = "hasHostileTarget";};};};};
+	};
+	"grs_platforms" = {
+		ai_type = "nullAI.plist";
+		materials = {"grs_platforms.png" = {diffuse_map = "grs_platforms.png"; normal_map = "grs_platforms_n.png";};};
+		model = "grs_platforms.dat";
+		name = "Platforms";
+		roles = "grs_platforms";
+	};
+	"grs_reactor" = {
+		ai_type = "nullAI.plist";
+		materials = {"grs_reactor.png" = {diffuse_map = "grs_reactor.png"; normal_map = "grs_reactor_n.png"; illumination_map = "grs_reactor.png";};};
+		model = "grs_reactor.dat";
+		name = "Reactor";
+		roles = "grs_reactor";
+		rotational_velocity = "1 0 -0.03 0";
+		shaders = {"grs_reactor.png" = {
+			vertex_shader = "grs_reactor.vertex";
+			fragment_shader = "grs_reactor.fragment";
+			textures = ("grs_reactor.png","grs_reactor_n.png","grs_reactor.png");
+			uniforms = {uDiffuseMap={type="texture";value=0;}; uNormalMap={type="texture";value=1;}; uIlluminationMap={type="texture";value=2;};};};};
+	};
+	"grs_living" = {
+		ai_type = "nullAI.plist";
+		materials = {"grs_living.png" = {diffuse_map = "grs_living.png"; normal_map = "grs_living_n.png"; emission_map = "grs_living_e.png";};};
+		model = "grs_living.dat";
+		name = "Living";
+		roles = "grs_living";
+	};
+	"grs_ani" = {
+		ai_type = "nullAI.plist";
+		materials = {"grs_screen.png" = {diffuse_map = "grs_screen.png";};};
+		model = "grs_screen.dat";
+		name = "Screen";
+		roles = "grs_ani";
+		shaders = {"grs_screen.png" = {vertex_shader = "grs_screen_ani.vertex"; fragment_shader = "grs_screen_ani.fragment";
+			textures = ({name="grs_screenani.png"; mag_filter="nearest"; repeat_t="yes";});
+			uniforms = {uDiffuseMap = {type="texture";value=0;}; uTime="timeElapsedSinceSpawn";};};};
+	};
+}

@@ -1,0 +1,28 @@
+uniform float uTime;
+varying vec3 vNormal, vPos;
+varying vec4 vFrameTexCoords;
+varying float vFade;
+const float kDisplayTime = 14.0;
+const float kFrameCount = 4.0;
+const float kLoopTime = 4.0 * kDisplayTime;
+const float kFadeTime = 1.5;
+
+void CrossFade(in vec2 virtualPixelCoord)
+{
+	float loopTime = mod(uTime / kLoopTime, 1.0);
+	float f1Offset = step(0.25, loopTime) + step(0.5, loopTime) + step(0.75, loopTime);
+	float f2Offset = f1Offset + 1.0;
+	float framePairTime = (loopTime * kFrameCount - f1Offset);
+	float vOffset = virtualPixelCoord.t;
+	vFrameTexCoords.st = vec2(virtualPixelCoord.s, (f1Offset + vOffset) / kFrameCount);
+	vFrameTexCoords.pq = vec2(virtualPixelCoord.s, (f2Offset + vOffset) / kFrameCount);
+	vFade = smoothstep(0.0, kFadeTime / kDisplayTime, framePairTime);
+}
+void main()
+{
+	vNormal = normalize(gl_NormalMatrix * gl_Normal);
+	vPos = vec3(gl_ModelViewMatrix * gl_Vertex);
+	gl_TexCoord[0] = gl_TextureMatrix[0] * gl_MultiTexCoord0;
+	CrossFade(gl_TexCoord[0].st);
+	gl_Position = ftransform();
+}

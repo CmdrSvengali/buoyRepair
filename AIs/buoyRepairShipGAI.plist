@@ -1,0 +1,36 @@
+{
+	GLOBAL = {ENTER = ("setStateTo: GOTO_POSITION");
+	};
+	"GOTO_POSITION" = {
+		ENTER = ("setSpeedFactorTo: 1.0", "pauseAI: 3.0");
+			"EXITED WITCHSPACE" = (landOnPlanet);
+		"LAUNCHED OKAY" = ("setStateTo: GOTO_POSITION_G");
+	};
+	"MOVE_OUT" = {
+		ENTER = (switchLightsOff, setDestinationToCurrentLocation, "setDesiredRangeTo: 1500.0", performFlyToRangeFromDestination, "setSpeedFactorTo: 0.1");
+		"ATTACKED" = (fightOrFleeHostiles);
+		"INCOMING_MISSILE" = (fireECM);
+		"WITCHSPACE OKAY" = ();
+		"WITCHSPACE BLOCKED" = (setDestinationToCurrentLocation, "setDesiredRangeTo: 1500.0", performFlyToRangeFromDestination, "setSpeedFactorTo: 0.4");
+		"WITCHSPACE UNAVAILABLE" = ("switchAITo: route1TraderAI.plist");
+		"DESIRED_RANGE_ACHIEVED" = (performHyperSpaceExitWithoutReplacing);
+		UPDATE = ("pauseAI: 10.0", setDestinationToCurrentLocation, "setDesiredRangeTo: 1500.0", performFlyToRangeFromDestination, "setSpeedFactorTo: 0.4");
+	};
+	"GOTO_POSITION_G" = {
+		ENTER = (setDestinationFromCoordinates, "setDesiredRangeTo: 50.0", "setSpeedFactorTo: 1.0", performFlyToRangeFromDestination);
+		"DESIRED_RANGE_ACHIEVED" = ("setStateTo: RELEASE_G");
+		"ATTACKED" = (fightOrFleeHostiles);
+		"INCOMING_MISSILE" = (fireECM);
+		UPDATE = ("pauseAI: 10.0");
+	};
+	"RELEASE_G" = {
+		ENTER = (performHold, "pauseAI: 5.0");
+		"ATTACKED" = (fightOrFleeHostiles);
+		"INCOMING_MISSILE" = (fireECM);
+		UPDATE = ("setStateTo: MOVE_OUT", "sendScriptMessage: releaseBuoyG");
+	};
+	"DISAPPEAR" = {
+		ENTER = ("pauseAI: 10.0", landOnPlanet);
+		UPDATE = ("pauseAI: 10.0", landOnPlanet);
+	};
+}

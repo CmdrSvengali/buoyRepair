@@ -1,0 +1,150 @@
+{
+	GLOBAL = {
+		ENTER = ("setSpeedTo: 0.0", "pauseAI: 1");
+		UPDATE = ("setStateTo: HEAD_FOR_GRS_STATION");
+	};
+	"HEAD_FOR_GRS_STATION" = {
+		ENTER = ("setSpeedFactorTo: 0.25", switchLightsOn);
+		"COURSE_OK" = ("setSpeedFactorTo: 0.95", performFlyToRangeFromDestination);
+		"WAYPOINT_SET" = ("setStateTo: GO_TO_WAYPOINT_GRS");
+		"DESIRED_RANGE_ACHIEVED" = ("sendScriptMessage: requestClamp");
+		"GRS_FREE_CLAMP" = ("setStateTo: APPROACH_A");
+		"GRS_NO_FREE_CLAMP" = ("setStateTo: WAIT");
+		"NO_GRS_STATION" = ("setAITo: route1traderAI.plist");
+		"TARGET_FOUND" = (fightOrFleeHostiles);
+		"INCOMING_MISSILE" = (setTargetToPrimaryAggressor, broadcastDistressMessage, fightOrFleeMissile, fightOrFleeHostiles, "setStateTo: FLEE");
+		ATTACKED = (fightOrFleeHostiles);
+		FIGHTING = (setTargetToPrimaryAggressor, "setStateTo: ATTACK_SHIP");
+		FLEEING = (setTargetToPrimaryAggressor, "setStateTo: FLEE");
+		UPDATE = (
+			"sendScriptMessage: findGRSStation",
+			setDestinationToTarget,
+			"setDesiredRangeTo: 15000.0",
+			checkCourseToDestination,
+			scanForHostiles,
+			"pauseAI: 10.0"
+		);
+	};
+	"GO_TO_WAYPOINT_GRS" = {
+		ENTER = ("setDesiredRangeTo: 50.0", checkCourseToDestination);
+		"COURSE_OK" = ("setSpeedFactorTo: 0.5", performFlyToRangeFromDestination);
+		"WAYPOINT_SET" = ("setDesiredRangeTo: 50.0", checkCourseToDestination);
+		"DESIRED_RANGE_ACHIEVED" = ("setStateTo: HEAD_FOR_GRS_STATION");
+		"INCOMING_MISSILE" = (setTargetToPrimaryAggressor, broadcastDistressMessage, fightOrFleeMissile, fightOrFleeHostiles, "setStateTo: FLEE");
+		"TARGET_FOUND" = (fightOrFleeHostiles);
+		ATTACKED = (fightOrFleeHostiles);
+		FIGHTING = (setTargetToPrimaryAggressor, "setStateTo: ATTACK_SHIP");
+		FLEEING = (setTargetToPrimaryAggressor, "setStateTo: FLEE");
+		UPDATE = (scanForHostiles, "pauseAI: 10.0");
+	};
+	"APPROACH_A" = {
+		ENTER = ("pauseAI: 1");
+		"COURSE_OK" = ("setSpeedFactorTo: 0.7", performFlyToRangeFromDestination);
+		"WAYPOINT_SET" = ("setStateTo: GO_TO_WAYPOINT_A");
+		"DESIRED_RANGE_ACHIEVED" = ("sendScriptMessage: parkEscorts", "setStateTo: APPROACH_B");
+		FRUSTRATED = ("setSpeedFactorTo: 0.5", performFlyToRangeFromDestination);
+		"GRS_NO_FREE_CLAMP" = ("setStateTo: WAIT");
+		"NO_GRS_STATION" = ("setAITo: route1traderAI.plist");
+		"INCOMING_MISSILE" = (setTargetToPrimaryAggressor, broadcastDistressMessage, fightOrFleeMissile);
+		ATTACKED = (setTargetToPrimaryAggressor, deployEscorts, broadcastDistressMessage);
+		RESTARTED = ("sendScriptMessage: setApproachA", "setDesiredRangeTo: 5000.0",
+			setDestinationFromCoordinates, checkCourseToDestination, "pauseAI: 10");
+		UPDATE = ("sendScriptMessage: setApproachA", "setDesiredRangeTo: 5000.0",
+			setDestinationFromCoordinates, checkCourseToDestination, "pauseAI: 10");
+	};
+	"GO_TO_WAYPOINT_A" = {
+		ENTER = ("setDesiredRangeTo: 50.0", checkCourseToDestination);
+		"COURSE_OK" = ("setSpeedFactorTo: 0.5", performFlyToRangeFromDestination);
+		"WAYPOINT_SET" = ("setDesiredRangeTo: 50.0", checkCourseToDestination);
+		"DESIRED_RANGE_ACHIEVED" = ("setStateTo: APPROACH_A");
+		FRUSTRATED = (performStop, "setStateTo: APPROACH_A");
+		ATTACKED = (fightOrFleeHostiles);
+		"INCOMING_MISSILE" = (setTargetToPrimaryAggressor, broadcastDistressMessage, fightOrFleeMissile, fightOrFleeHostiles, "setStateTo: FLEE");
+		"TARGET_FOUND" = (fightOrFleeHostiles);
+		FIGHTING = (setTargetToPrimaryAggressor, "setStateTo: ATTACK_SHIP");
+		FLEEING = (setTargetToPrimaryAggressor, "setStateTo: FLEE");
+		UPDATE = (scanForHostiles, "pauseAI: 10.0");
+	};
+	"APPROACH_B" = {
+		ENTER = ("sendScriptMessage: setApproachB", "setDesiredRangeTo: 10.0", "setSpeedFactorTo: 0.5",
+			setDestinationFromCoordinates, performFlyToRangeFromDestination);
+		"DESIRED_RANGE_ACHIEVED" = ("sendScriptMessage: checkPlayerDistance");
+		"PLAYER_CLOSE" = ("setStateTo: APPROACH_C");
+		"PLAYER_FAR_AWAY" = ("setStateTo: GO_AWAY");
+		FRUSTRATED = ("setSpeedFactorTo: 0.3", performFlyToRangeFromDestination);
+		"GRS_NO_FREE_CLAMP" = ("setStateTo: WAIT");
+		"NO_GRS_STATION" = ("setAITo: route1traderAI.plist");
+		"INCOMING_MISSILE" = (setTargetToPrimaryAggressor, broadcastDistressMessage, fightOrFleeMissile);
+		ATTACKED = (setTargetToPrimaryAggressor, deployEscorts, broadcastDistressMessage);
+	};
+	"APPROACH_C" = {
+		ENTER = ("sendScriptMessage: setApproachC", "setDesiredRangeTo: 5.0",
+			setDestinationFromCoordinates, performFaceDestination);
+		"FACING_DESTINATION" = ("setSpeedTo: 40", "setDesiredRangeTo: 5.0", performFlyToRangeFromDestination);
+		FRUSTRATED = ("setSpeedTo: 30", performFlyToRangeFromDestination);
+		ATTACKED = (setTargetToPrimaryAggressor, deployEscorts, broadcastDistressMessage);
+		"DESIRED_RANGE_ACHIEVED" = ("setStateTo: APPROACH_D");
+		"NO_GRS_STATION" = ("setAITo: route1traderAI.plist");
+		"COLLISION" = (performStop);
+		"ENERGY_LOW" = (performStop);
+		"ENERGY_FULL" = ("setStateTo: APPROACH_D");
+	};
+	"APPROACH_D" = {
+		ENTER = ("sendScriptMessage: setApproachD", "setDesiredRangeTo: 10.0", "setSpeedTo: 10",
+			setDestinationFromCoordinates, performFlyToRangeFromDestination, "setDesiredRangeTo: 30.0");
+		FRUSTRATED = ("setSpeedTo: 5", "setDesiredRangeTo: 30.0", performFlyToRangeFromDestination);
+		"DESIRED_RANGE_ACHIEVED" = ("setStateTo: UNLOADING");
+		"NO_GRS_STATION" = ("setAITo: route1traderAI.plist");
+		ATTACKED = (setTargetToPrimaryAggressor, deployEscorts, broadcastDistressMessage);
+		"COLLISION" = (performStop);
+		"ENERGY_LOW" = (performStop);
+		"ENERGY_FULL" = ("setStateTo: UNLOADING");
+	};
+	"UNLOADING" = {
+		ENTER = (performStop, "pauseAI: 30", switchLightsOff);
+		ATTACKED = ("sendScriptMessage: reverse", "setStateTo: REVERSE", switchLightsOn);
+		"ROLL_1" = ("sendScriptMessage: reverse", "setStateTo: REVERSE", switchLightsOn);
+		UPDATE = ("pauseAI: 30", "rollD: 5");
+	};
+	"REVERSE" = {
+		ENTER = ("pauseAI: 80");
+		UPDATE = ("sendScriptMessage: forward", "setStateTo: GO_AWAY");
+	};
+	"GO_AWAY" = {
+		ENTER = ("sendScriptMessage: setApproachE", "setDesiredRangeTo: 2000.0", "setSpeedFactorTo: 0.0",
+			setDestinationFromCoordinates, performFaceDestination, "pauseAI: 10");
+		"FACING_DESTINATION" = ("sendScriptMessage: resetClamp", "setDesiredRangeTo: 2000.0", "setSpeedFactorTo: 0.5", performFlyToRangeFromDestination);
+		"DESIRED_RANGE_ACHIEVED" = ("sendScriptMessage: callEscorts", "rollD: 3");
+		"NO_GRS_STATION" = ("setAITo: route1traderAI.plist");
+		"ROLL_1" = ("setStateTo: HEAD_FOR_GRS_STATION");
+		"ROLL_2" = ("setStateTo: HEAD_FOR_GRS_STATION");
+		"ROLL_3" = (setTargetToStation, dockEscorts, "setAITo: dockingAI.plist");
+		ATTACKED = (setTargetToPrimaryAggressor, deployEscorts, broadcastDistressMessage);
+	};
+	"WAIT" = {
+		ENTER = (performStop, "pauseAI: 30");
+		"GRS_FREE_CLAMP" = ("setStateTo: APPROACH_A");
+		"NO_GRS_STATION" = ("setAITo: route1traderAI.plist");
+		ATTACKED = (fightOrFleeHostiles);
+		FIGHTING = (setTargetToPrimaryAggressor, "setStateTo: ATTACK_SHIP");
+		FLEEING = (setTargetToPrimaryAggressor, "setStateTo: FLEE");
+		UPDATE = ("sendScriptMessage: requestClamp", "pauseAI: 30");
+	};
+	FLEE = {
+		ENTER = ("setDesiredRangeTo: 25600", performFlee);
+		ATTACKED = (fightOrFleeHostiles);
+		FIGHTING = (setTargetToPrimaryAggressor, "setStateTo: ATTACK_SHIP");
+		FLEEING = (setTargetToPrimaryAggressor, "setStateTo: FLEE");
+		"TARGET_LOST" = (performIdle, "setStateTo: GLOBAL");
+		"TARGET_DESTROYED" = (performIdle, "setStateTo: GLOBAL");
+		"INCOMING_MISSILE" = (setTargetToPrimaryAggressor, broadcastDistressMessage, fightOrFleeMissile, fightOrFleeHostiles);
+		"REACHED_SAFETY" = (performIdle, "setStateTo: GLOBAL");
+	};
+	"ATTACK_SHIP" = {
+		ENTER = (broadcastDistressMessage, performAttack);
+		"ENERGY_LOW" = (setTargetToPrimaryAggressor, broadcastDistressMessage, "setStateTo: FLEE");
+		"INCOMING_MISSILE" = (setTargetToPrimaryAggressor, broadcastDistressMessage, fightOrFleeMissile, "setStateTo: FLEE");
+		"TARGET_DESTROYED" = ("setStateTo: HEAD_FOR_GRS_STATION");
+		"TARGET_LOST" = ("setStateTo: HEAD_FOR_GRS_STATION");
+	};
+}

@@ -1,0 +1,22 @@
+{
+	"GRS_Viper_Warning" = (
+		"Attacking the %I GRS Navigational Beacon is an illegal act!",
+		"We received a report you attacked the %I GRS Navigational Beacon."
+	);
+	"GRS_Welcome" = (
+		"GRS wishes you a happy stay at its facilities.",
+		"GRS wishes all visitors a pleasant time.",
+		"GRS gives you a warm welcome.",
+		"GRS thanks you for your interest in its facilities.",
+		"GRS can always use fresh alloys.",
+		"GRS sells high quality computers."
+	);
+	"GRS_Goodbye" = (
+		"GRS thanks you for your stay at its facilities.",
+		"GRS wishes you a nice journey.",
+		"GRS sends you a good bye.",
+		"GRS thanks you for your interest in its facilities.",
+		"GRS can always use fresh alloys.",
+		"GRS sells high quality computers."
+	);
+}

@@ -1,0 +1,35 @@
+{
+	GLOBAL = {
+		ENTER = (switchLightsOff, "setStateTo: NEXT_COORDS", "pauseAI: 5.0");
+	};
+	"NEXT_COORDS" = {
+		"APPROACH_COORDINATES" = (setDestinationFromCoordinates, "setStateTo: GO_TO_COORDS", switchLightsOff);
+		"END_CONTROL" = ("setStateTo: EXIT_SYSTEM");
+		UPDATE = ("sendScriptMessage: nextPosition", "setDesiredRangeTo: 10.0", "setSpeedTo: 0");
+	};
+	"GO_TO_COORDS" = {
+		ENTER = (performFaceDestination);
+		"FACING_DESTINATION" = ("setSpeedTo: 60", performFlyToRangeFromDestination);
+		"DESIRED_RANGE_ACHIEVED" = (performStop, switchLightsOn, "setStateTo: GET_TARGET");
+		"END_CONTROL" = ("setStateTo: EXIT_SYSTEM");
+		ATTACKED = (setTargetToPrimaryAggressor, "setAITo: interceptAI.plist");
+		RESTARTED = ("setStateTo: EXIT_SYSTEM");
+		STOP = (performStop);
+		"ENERGY_FULL" = (performFaceDestination);
+	};
+	"GET_TARGET" = {
+		"TARGET_FOUND" = (setTargetToFoundTarget, setDestinationToTarget, performFaceDestination, "setStateTo: EXAMINE_TARGET");
+		"NOTHING_FOUND" = (switchLightsOff, "setStateTo: NEXT_COORDS");
+		ATTACKED = (switchLightsOff, setTargetToPrimaryAggressor, "setAITo: interceptAI.plist");
+		RESTARTED = ("setStateTo: EXIT_SYSTEM");
+		UPDATE = ("scanForNearestShipWithRole: repaired-buoy-station", "pauseAI: 15");
+	};
+	"EXAMINE_TARGET" = {
+		"ROLL_4" = ("setStateTo: NEXT_COORDS");
+		ATTACKED = (switchLightsOff, setTargetToPrimaryAggressor, "setAITo: interceptAI.plist");
+		UPDATE = ("pauseAI: 5", "rollD: 4");
+	};
+	"EXIT_SYSTEM" = {
+		ENTER = (switchLightsOff, "setAITo: dockingAI.plist");
+	};
+}
