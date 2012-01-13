@@ -273,7 +273,7 @@
 		script_info = {can_explode = yes;};
 	};
 	"repaired-buoy" = {
-		ai_type = "buoyRepairBuoyAI.plist";
+		ai_type = "buoyRepairBuoyGAI.plist";
 		beacon = "N0100 Navigation Buoy";
 		like_ship = "grs_buoy-base";
 		max_flight_pitch = 0.3; max_flight_roll = 0.2;
@@ -284,7 +284,7 @@
 		script_info = {can_explode = yes;};
 	};
 	"repaired-buoy-witchpoint" = {
-		ai_type = "buoyRepairBuoyAI.plist";
+		ai_type = "buoyRepairBuoyGAI.plist";
 		like_ship = "buoy-witchpoint";
 		max_flight_pitch = 0.3; max_flight_roll = 0.2;
 		roles = "buoy-witchpoint(0.1) repaired-grs-buoy-witchpoint";
