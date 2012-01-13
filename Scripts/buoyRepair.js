@@ -121,8 +121,8 @@ this.addShips = function ()
 	if (Math.random()< 0.25) {system.addShipsToRoute("repairBuoyTugger", 1, 0.75, "pw"); ++this.tugger};
 
 	// add big traders
-	if (Math.random()< 0.4) system.addShipsToRoute("buoy_repair_big_trader", 1, null, "pw");
-	if (Math.random()< 0.4) system.addShipsToRoute("buoy_repair_big_trader", 1, null, "pw");
+	if (Math.random()< 0.4) system.addShipsToRoute("buoy_repair_big_trader", 1, Math.random(), "pw");
+	if (Math.random()< 0.4) system.addShipsToRoute("buoy_repair_big_trader", 1, Math.random(), "pw");
 
 	var sunVector = system.sun.position.subtract(this.grsStation.position).direction();
 
