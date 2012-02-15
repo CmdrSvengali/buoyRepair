@@ -69,7 +69,7 @@
 		has_escape_pod = 0.75;
 		has_scoop = 1;
 		heat_insulation = 8;
-		materials = {"grs_guanako.png" = {normal_map = {"name"="grs_guanako_n.png";}; specular_color = (1,1,1,1);};};
+		materials = {"grs_guanako.png" = {ambient_color = (0,0,0,0); diffuse_color = (0.7,0.7,0.7,1); diffuse_map = {name="grs_guanako.png";}; illumination_map = {name="grs_guanako.png"; extract_channel="a";}; normal_map = {name="grs_guanako_n.png";}; specular_color = (0.3,0.3,0.3,1); specular_modulate_color = (0.4,0.4,0.4,1); shininess = 1;};};
 		max_cargo = 125;
 		max_energy = 1450;
 		max_flight_pitch = 0.15; max_flight_roll = 0.25;
@@ -205,7 +205,7 @@
 		has_scoop = 1;
 		laser_color = "whiteColor";
 		likely_cargo = 1;
-		materials = {"grs_controller.png" = {normal_map = {"name"="grs_controller_n.png";}; specular_color = (1,1,1,1);};};
+		materials = {"grs_controller.png" = {ambient_color = (0.2,0.2,0.2,0.2); normal_map = {name="grs_controller_n.png";}; specular_map = {name="grs_controller.png"; extract_channel="a";}; shininess = 30;};};
 		max_cargo = 1;
 		max_energy = 550;
 		max_flight_pitch = 0.45; max_flight_roll = 0.55;
@@ -316,7 +316,7 @@
 		cargo_type = "CARGO_NOT_CARGO";
 		density = 0.3;
 		energy_recharge_rate = 2;
-		exhaust = ("16 -16.8 -7.1 7 7 12","-16 -16.8 -7.1 7 7 12");
+		exhaust = ("16 -14.8 -7.1 7 7 12","-16 -14.8 -7.1 7 7 12");
 		forward_weapon_type = "WEAPON_BEAM_LASER";
 		frangible = true;
 		fuel = 70;
@@ -325,7 +325,7 @@
 		has_shield_enhancer = 1;
 		has_scoop = 1;
 		likely_cargo = 1;
-		materials = {"grs_armadillo.png" = {ambient_color = (0,0,0,0); diffuse_color = (0.6,0.6,0.6,1); diffuse_map = {"name"="grs_armadillo.png";}; illumination_map = {"name"="grs_armadillo.png";}; normal_map = {"name"="grs_armadillo_n.png";}; specular_color = (0.1,0.1,0.1,1); shininess = 28;};};
+		materials = {"grs_armadillo.png" = {ambient_color = (0.1,0.1,0.1,0.1); diffuse_color = (0.6,0.6,0.6,1); diffuse_map = {name="grs_armadillo.png";}; illumination_map = {name="grs_armadillo.png";}; normal_map = {name="grs_armadillo_n.png";}; specular_map = {name="grs_armadillo_n.png";"extract_channel"="a";}; specular_modulate_color = (0.7,0.7,0.7,0.7); shininess = 55; };};
 		max_cargo = 20;
 		max_energy = 750;
 		max_flight_pitch = 0.4; max_flight_roll = 0.5;
