@@ -457,7 +457,7 @@
 	};
 	"grs_bay" = {
 		ai_type = "nullAI.plist";
-		materials = {"grs_bay.png" = {diffuse_map = "grs_bay_shadow.png"; illumination_map = "grs_bay_shadow.png"; shininess = 0; specular_color = (0.0,0.0,0.0,0.0);};};
+		materials = {"grs_bay.png" = {diffuse_map = "grs_bay.png"; illumination_map = "grs_bay.png"; shininess = 0; specular_color = (0.0,0.0,0.0,0.0);};};
 		model = "grs_bay.dat";
 		name = "Bay";
 		roles = "grs_bay";
