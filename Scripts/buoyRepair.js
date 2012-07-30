@@ -1,26 +1,21 @@
 "use strict";
 this.name      = "buoyRepair";
 this.author    = "eric walch (script), Svengali (artwork)";
-this.copyright = "(C)2008-2011 the autors.";
+this.copyright = "(C)2008-2012 the autors.";
 this.description = "This script adds buoy repairships when one of the two main navigation buoys gets destroyed";
-this.version   = "1.3.2";
+this.version   = "1.3.3";
 
-this.oxpcLookup = function()
-{
-	this.oxpcSettings = {
-		Info: {
-			Name:this.name,
-			MinVersion:"1.02.7",
-			Display:"BuoyRepair",
-			EarlyCall:true,
-			EarlySet:true,
-			InfoB:"logging: Extended logging for added ships and grs station.\nextraA: Add the GRS station in all average- and high economic systems + more testships."
-		},
-		Bool0: {Name:"logging",Def:false,Desc:"Logging functions."},
-		Bool1: {Name:"extraA",Def:false,Desc:"Add stations in high eco systems."}
-	};
-	delete this.oxpcLookup;
-}
+this.oxpcSettings = {
+	Info: {
+		Name:this.name,
+		Display:"BuoyRepair",
+		EarlyCall:true,
+		EarlySet:true,
+		InfoB:"logging: Extended logging for added ships and grs station.\nextraA: Add the GRS station in all average- and high economic systems + more testships."
+	},
+	Bool0: {Name:"logging",Def:false,Desc:"Logging functions."},
+	Bool1: {Name:"extraA",Def:false,Desc:"Add stations in high eco systems."}
+};
 
 this.startUp = function ()
 {
@@ -44,6 +39,7 @@ this.statusCheck = function ()
 	if (player.ship.docked)
     {
         this.buoyStatusTimer.stop();
+		delete this.buoyStatusTimer;
     }
 	else
     {
@@ -81,6 +77,7 @@ this.shipExitedWitchspace = function ()
 
 this.addStation = function ()
 {
+	if(this.resetTimer){this.resetTimer.stop; delete this.resetTimer;}
 	if (system.economy < 2 && ((system.government > 3 && system.techLevel < 11 && system.techLevel > 4) || this.extraA) && !system.gonenova)
     {
 		this.grsVector = new Vector3D([system.ID, system.ID, system.ID-256]).direction();

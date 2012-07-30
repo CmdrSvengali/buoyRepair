@@ -412,7 +412,7 @@
 		has_scoop = 0;
 		has_shipyard = 1;
 		market = "repaired-buoy-station";
-		materials = {"grs_main.png" = {diffuse_map = "grs_main.png"; normal_map = "grs_main_n.png"; emission_map = "grs_main_e.png";};};
+		materials = {"grs_main.png" = {diffuse_map = "grs_main.png"; normal_map = "grs_main_n.png"; illumination_map = {name="grs_main.png"; extract_channel="a";};};};
 		max_defense_ships = 3;
 		max_energy = 50000;
 		max_flight_pitch = 0; max_flight_roll = 0;
@@ -464,14 +464,14 @@
 	};
 	"grs_mainglow" = {
 		ai_type = "nullAI.plist";
-		materials = {"grs_mainglow.png" = {diffuse_map = "grs_mainglow.png"; illumination_map = "grs_mainglow_e.png"; shininess = 0; specular_color = (0.0,0.0,0.0,0.0);};};
+		materials = {"grs_mainglow.png" = {diffuse_map = "grs_mainglow.png"; illumination_map = {name="grs_mainglow.png"; extract_channel="a";}; shininess = 0; specular_color = (0.0,0.0,0.0,0.0);};};
 		model = "grs_mainglow.dat";
 		name = "Glow";
 		roles = "grs_mainglow";
 		shaders = {"grs_mainglow.png" = {
 			vertex_shader = "grs_reactor.vertex";
 			fragment_shader = "grs_mainglow.fragment";
-			textures = ("grs_mainglow.png","grs_mainglow_e.png");
+			textures = ("grs_mainglow.png","grs_mainglow.png");
 			uniforms = {uDiffuseMap={type="texture";value=0;}; uIlluminationMap={type="texture";value=1;};
 				uFuel={binding = "fuel";}; uTime = "timeElapsedSinceSpawn";
 				uRange = {binding = "rangeToPrimaryTarget";}; uHostile = {binding = "hasHostileTarget";};};};};
@@ -498,7 +498,7 @@
 	};
 	"grs_living" = {
 		ai_type = "nullAI.plist";
-		materials = {"grs_living.png" = {diffuse_map = "grs_living.png"; normal_map = "grs_living_n.png"; emission_map = "grs_living_e.png";};};
+		materials = {"grs_living.png" = {diffuse_map = "grs_living.png"; normal_map = "grs_living_n.png"; illumination_map = {name="grs_living.png"; extract_channel="a";};};};
 		model = "grs_living.dat";
 		name = "Living";
 		roles = "grs_living";
