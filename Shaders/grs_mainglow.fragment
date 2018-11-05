@@ -1,7 +1,6 @@
 varying vec3 vEyeVector,vLight1Vector;
 varying vec2 vTexCoord;
-uniform sampler2D uDiffuseMap;
-uniform sampler2D uIlluminationMap;
+uniform sampler2D uDiffuseMap,uIlluminationMap;
 uniform int uFuel;
 uniform float uTime,uRange;
 uniform bool uHostile;
@@ -9,31 +8,26 @@ uniform bool uHostile;
 void main(void)
 {
 	vec4 totalColor = vec4(0);
-	vec4 ambientLight = gl_LightModel.ambient;
-	vec4 ambientColor = gl_FrontMaterial.ambient;
 	vec4 diffuseColor = gl_FrontMaterial.diffuse;
 	vec4 diffuseMapColor = texture2D(uDiffuseMap, vTexCoord);
 	diffuseMapColor.a = 1.0;
 	diffuseColor *= diffuseMapColor;
-	ambientColor *= diffuseMapColor;
 	totalColor += diffuseColor;
 	vec4 illum = texture2D(uIlluminationMap, vTexCoord);
 	float blink = float(uFuel);
 	float p1 = 0.7;
 	float p2 = 0.7;
-	if(blink>=10.0){
-		if(blink>=40.0){blink -=40.0; p1 = 0.0;}
-		if(blink>=20.0){blink -=20.0; p1 = abs(sin(uTime));}
-		if(blink>=10.0){blink -=10.0; p1 = 0.7;}
-	}
+	float asu = abs(sin(uTime));
+	if(blink>=40.0){blink -=40.0; p1 = 0.0;}
+	if(blink>=20.0){blink -=20.0; p1 = asu;}
+	if(blink>=10.0){blink -=10.0;}
 	if(blink>=4.0){blink -=4.0; p2 = 0.0;}
-	if(blink>=2.0){blink -=2.0; p2 = abs(sin(uTime));}
-	if(blink>=1.0){blink -=1.0; p2 = 0.7;}
+	if(blink>=2.0){blink -=2.0; p2 = asu;}
 	if(vTexCoord.x>0.62 && totalColor.g>0.3 && vTexCoord.y>0.37){
 		if(vTexCoord.y>0.68) illum -= p1;
 		if(vTexCoord.y<0.68) illum -= p2;
 	}
-	if(uHostile && uRange<25000.0 && vTexCoord.x<0.47 && vTexCoord.y<0.5) totalColor.r = min(abs(sin(uTime)),0.5);
+	if(uHostile && uRange<25000.0 && vTexCoord.x<0.47 && vTexCoord.y<0.5) totalColor.r = min(asu,0.5);
 	totalColor += illum;
 	gl_FragColor = totalColor;
 }

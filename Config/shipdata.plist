@@ -3,7 +3,13 @@
 		ai_type = "buoyRepairBuoyGAI.plist";
 		beacon = "grs-Factory-beacon";
 		max_flight_pitch = 0.3; max_flight_roll = 0.2;
-		like_ship = "buoy";
+		like_ship = "oolite_template_buoy";
+		materials = {"target_metal.png" = {
+			diffuse_map = "grs_target_metal.png";
+			gloss = 0.7;
+			illumination_map = {name="grs_target_metal.png"; extract_channel="r";};
+			shininess = 110;
+		};};
 		roles = "grs-factory-buoy";
 		scan_class = "CLASS_BUOY";
 		script = "buoyRepairBuoy.js";
@@ -69,7 +75,13 @@
 		has_escape_pod = 0.75;
 		has_scoop = 1;
 		heat_insulation = 8;
-		materials = {"grs_guanako.png" = {ambient_color = (0,0,0,0); diffuse_color = (0.7,0.7,0.7,1); diffuse_map = {name="grs_guanako.png";}; illumination_map = {name="grs_guanako.png"; extract_channel="a";}; normal_map = {name="grs_guanako_n.png";}; specular_color = (0.3,0.3,0.3,1); specular_modulate_color = (0.4,0.4,0.4,1); shininess = 1;};};
+		materials = {"grs_guanako.png" = {
+			diffuse_map = "grs_guanako.png";
+			illumination_map = {name="grs_guanako.png"; extract_channel="a";};
+			normal_map = "grs_guanako_n.png";
+			shininess = 87;
+			gloss = 0.6;
+		};};
 		max_cargo = 125;
 		max_energy = 1450;
 		max_flight_pitch = 0.15; max_flight_roll = 0.25;
@@ -95,59 +107,39 @@
 		roles = "buoy_repair_big_trader bigTrader(0.5)";
 		script_info = {grs_dockinglength = 950;};
 	};
+	// scaled x2
 	"grs_big_anaconda" = {
-		aft_eject_position = "0 -40 -134";
-		aft_weapon_type = "WEAPON_PULSE_LASER";
 		ai_type = "grsBigTraderAI.plist";
+		auto_ai = no;
+		auto_weapons = no;
 		cargo_carried = "SCARCE_GOODS";
-		cargo_type = "CARGO_NOT_CARGO";
-		energy_recharge_rate = 3;
 		escort_ship = "cobramk1";
 		escorts = 6;
-		exhaust = ("-19.6 11.2 -157 20 20 16","19.6 11.2 -157 20 20 16");
-		forward_weapon_type = "WEAPON_PULSE_LASER";
-		fuel = 70;
-		has_ecm = 0.95;
-		has_escape_pod = 0.95;
-		has_scoop = 0.95;
 		heat_insulation = 3;
+		like_ship = "oolite_template_anaconda";
 		likely_cargo = 7;
-		max_cargo = 750;
 		max_energy = 900;
 		max_flight_pitch = 0.2; max_flight_roll = 0.35;
-		max_flight_speed = 140;
-		missile_launch_position = "0 -18 120";
-		missiles = 7;
 		model = "anaconda_grs.dat";
 		name = "Anaconda";
 		roles = "buoy_repair_big_trader big_anaconda";
 		script = "buoyRepairDocker.js";
 		script_info = {grs_dockinglength = 950;};
 		thrust = 9;
-		weapon_position_aft = "0 0 -170"; weapon_position_forward = "0 -8 170"; weapon_position_port = "-75 -8 -80"; weapon_position_starboard = "75 -8 -80";
 	};
+	// scaled x2
 	"grs_big_boa2" = {
-		aft_eject_position = "0 -31.5 -101.5";
-		aft_weapon_type = "WEAPON_BEAM_LASER";
 		ai_type = "grsBigTraderAI.plist";
+		auto_ai = no;
+		auto_weapons = no;
 		cargo_carried = "SCARCE_GOODS";
 		cargo_type = "CARGO_NOT_CARGO";
-		energy_recharge_rate = 3.2;
 		escorts = 2;
-		exhaust = ("-19.5 3 -115 44 44 40","19.5 3 -115 44 44 40");
 		heat_insulation = 3;
-		forward_weapon_type = "WEAPON_BEAM_LASER";
-		fuel = 70;
-		has_ecm = 0.95;
-		has_escape_pod = yes;
-		has_scoop = yes;
+		like_ship = "oolite_template_boa-mk2";
 		likely_cargo = 15;
-		max_cargo = 175;
 		max_energy = 800;
 		max_flight_pitch = 0.5; max_flight_roll = 1.2;
-		max_flight_speed = 312;
-		missile_launch_position = "0 -6 37";
-		missiles = 5;
 		model = "boa2_grs.dat";
 		name = "Boa Class Cruiser";
 		roles = "buoy_repair_big_trader big_boa";
@@ -155,10 +147,11 @@
 		script_info = {grs_dockinglength = 900;};
 		thrust = 18;
 		weapon_energy = 15;
-		weapon_position_aft = "0 17.25 -108.25"; weapon_position_forward = "0 16 115"; weapon_position_port = "-23.5 3.5 0"; weapon_position_starboard = "32.5 3.5 0";
 	};
 	"grs_cobra3_redux1" = {
 		ai_type = "grsDockerAI.plist";
+		auto_ai = no;
+		auto_weapons = no;
 		cargo_type = "CARGO_NOT_CARGO";
 		energy_recharge_rate = 3;
 		fuel = 70;
@@ -166,7 +159,7 @@
 		has_escape_pod = 0.95;
 		has_scoop = 0.95;
 		likely_cargo = 3;
-		like_ship = "cobra3-alternate";
+		like_ship = "oolite_template_cobra3-alternate";
 		max_cargo = 35;
 		max_energy = 250;
 		max_flight_pitch = 1; max_flight_roll = 2;
@@ -199,7 +192,13 @@
 		has_scoop = 1;
 		laser_color = "whiteColor";
 		likely_cargo = 1;
-		materials = {"grs_controller.png" = {ambient_color = (0.2,0.2,0.2,0.2); normal_map = {name="grs_controller_n.png";}; specular_map = {name="grs_controller.png"; extract_channel="a";}; shininess = 30;};};
+		materials = {"grs_controller.png" = {
+			diffuse_map = "grs_controller.png";
+			specular_map = {name="grs_controller.png"; extract_channel="a";};
+			normal_map = "grs_controller_n.png";
+			shininess = 87;
+			gloss = 0.6;
+		};};
 		max_cargo = 1;
 		max_energy = 550;
 		max_flight_pitch = 0.45; max_flight_roll = 0.55;
@@ -271,16 +270,31 @@
 		beacon = "N0100 Navigation Buoy";
 		like_ship = "grs_buoy-base";
 		max_flight_pitch = 0.3; max_flight_roll = 0.2;
+		materials = {"grs_target_metal.png" = {
+			gloss = 0.7;
+			illumination_map = {name="grs_target_metal.png"; extract_channel="r";};
+			shininess = 110;
+		};};
 		model = "grs_buoy.dat";
 		name = "Navigation Buoy";
 		roles = "buoy(0) repaired-grs-buoy";
 		scan_class = "CLASS_BUOY";
 		script_info = {can_explode = yes;};
+		subentities = (
+			{type = "flasher"; position = (0,0,60); frequency = 0.15; phase = -1; size = 25; colors = ({hue=0;},{hue=120;});},
+			{type = "flasher"; position = (0,0,-60); frequency = 0.15; phase = 1; size = 25; colors = ({hue=120;},{hue=0;});}
+		);
 	};
 	"repaired-buoy-witchpoint" = {
 		ai_type = "buoyRepairBuoyGAI.plist";
-		like_ship = "buoy-witchpoint";
+		like_ship = "oolite_template_buoy-witchpoint";
 		max_flight_pitch = 0.3; max_flight_roll = 0.2;
+		materials = {"target_metal.png" = {
+			diffuse_map = "grs_target_metal.png";
+			gloss = 0.7;
+			illumination_map = {name="grs_target_metal.png"; extract_channel="r";};
+			shininess = 110;
+		};};
 		roles = "buoy-witchpoint(0.1) repaired-grs-buoy-witchpoint";
 		scan_class = "CLASS_BUOY";
 		script = "buoyRepairBuoy.js";
@@ -290,7 +304,12 @@
 		ai_type = "nullAI.plist";
 		cargo_type = "CARGO_NOT_CARGO";
 		energy_recharge_rate = 2;
-		materials = {"target_metal.png" = {ambient_color = (0.75, 0.75, 0.75); diffuse_color = (0.8, 0.8, 0.8); shininess = 20; specular_color = (0.8, 0.83, 0.85, 1.0);};};
+		materials = {"grs_target_metal.png" = {
+			diffuse_map = "grs_target_metal.png";
+			gloss = 0.7;
+			illumination_map = {name="grs_target_metal.png"; extract_channel="r";};
+			shininess = 110;
+		};};
 		max_energy = 250;
 		max_flight_pitch = 2;
 		max_flight_roll = 2;
@@ -319,7 +338,14 @@
 		has_shield_enhancer = 1;
 		has_scoop = 1;
 		likely_cargo = 1;
-		materials = {"grs_armadillo.png" = {ambient_color = (0.1,0.1,0.1,0.1); diffuse_color = (0.6,0.6,0.6,1); diffuse_map = {name="grs_armadillo.png";}; illumination_map = {name="grs_armadillo.png";}; normal_map = {name="grs_armadillo_n.png";}; specular_map = {name="grs_armadillo_n.png";"extract_channel"="a";}; specular_modulate_color = (0.7,0.7,0.7,0.7); shininess = 55; };};
+		materials = {"grs_armadillo.png" = {
+			shininess = 67;
+			normal_map = "grs_armadillo_n.png";
+			illumination_map = "grs_armadillo.png";
+			diffuse_map = "grs_armadillo.png";
+			specular_map = {name="grs_armadillo_n.png";extract_channel="a";};
+			gloss = 0.5;
+		};};
 		max_cargo = 20;
 		max_energy = 750;
 		max_flight_pitch = 0.4; max_flight_roll = 0.5;
@@ -393,6 +419,8 @@
 	};
 	"GRS-Station" = {
 		ai_type = "buoyRepairStationAI.plist";
+		allegiance = "galcop";
+		auto_ai = no;
 		cargo_type = "CARGO_NOT_CARGO";
 		defense_ship_role = "grs_factory_defender";
 		energy_recharge_rate = 100;
@@ -405,8 +433,27 @@
 		has_npc_traffic = yes;
 		has_scoop = 0;
 		has_shipyard = 1;
-		market = "repaired-buoy-station";
-		materials = {"grs_main.png" = {diffuse_map = "grs_main.png"; normal_map = "grs_main_n.png"; emission_map = "grs_main_e.png";};};
+		market = "buoyRepairMarket";
+		market_script = "buoyRepairMarket.js";
+		materials = {
+			"grs_main.png" = {
+				diffuse_map = "grs_main.png";
+				normal_map = "grs_main_n.png";
+				emission_map = "grs_main_e.png";
+				shininess = 99; gloss = 0.6;
+			};
+			"grs_platforms.png" = {
+				diffuse_map = "grs_platforms.png";
+				normal_map = "grs_platforms_n.png";
+				shininess = 99; gloss=0.6;
+			};
+			"grs_living.png" = {
+				diffuse_map = "grs_living.png";
+				normal_map = "grs_living_n.png";
+				emission_map = "grs_living_e.png";
+				shininess = 99; gloss = 0.6;
+			};
+		};
 		max_defense_ships = 3;
 		max_energy = 50000;
 		max_flight_pitch = 0; max_flight_roll = 0;
@@ -414,21 +461,19 @@
 		max_police = 2;
 		max_scavengers = 3;
 		missiles = 0;
-		model = "grs_main.dat";
+		model = "grs_main_combined.dat";
 		name = "GRS Buoy Factory";
 		roles = "repaired-buoy-station GRS-Station station";
 		rotating = false;
 		scan_class = "CLASS_STATION";
 		scanner_range = 25600;
 		script = "buoyRepairStation.js";
-		script_info = {"snoopersNews" = true; "bgs_music" = "buoyRepair_music.ogg";};
+		script_info = {"snoopersNews" = true; "bgs_tunnel_texture" = "bgs_docking_tunnel01.png";};
 		subentities = (
 			{subentity_key = "grs_dock"; is_dock = true; orientation = (1,0,0,0); position = (0,0,170);},
 			{subentity_key = "grs_bay"; orientation = (1,0,0,0); position = (0,0,0);},
 			{subentity_key = "grs_mainglow"; orientation = (1,0,0,0); position = (0,0,0);},
-			{subentity_key = "grs_platforms"; orientation = (1,0,0,0); position = (0,0,0);},
 			{subentity_key = "grs_reactor"; orientation = (1,0,0,0); position = (0,0,0);},
-			{subentity_key = "grs_living"; orientation = (1,0,0,0); position = (0,0,0);},
 			{subentity_key = "grs_ani"; orientation = (1,0,0,0); position = (0,0,0);},
 			// Guiding system
 			{type = flasher; size = 20; color = {hue = 180;}; frequency = 1; phase = 2.4; position = (0,0,685);},
@@ -451,60 +496,67 @@
 	};
 	"grs_bay" = {
 		ai_type = "nullAI.plist";
-		materials = {"grs_bay.png" = {diffuse_map = "grs_bay_shadow.png"; illumination_map = "grs_bay_shadow.png"; shininess = 0; specular_color = (0.0,0.0,0.0,0.0);};};
+		materials = {"grs_bay.png" = {
+			diffuse_map = "grs_bay.png";
+			illumination_map = "grs_bay.png";
+			shininess = 0;
+			specular_color = (0.0,0.0,0.0,0.0);
+		};};
 		model = "grs_bay.dat";
 		name = "Bay";
 		roles = "grs_bay";
 	};
 	"grs_mainglow" = {
 		ai_type = "nullAI.plist";
-		materials = {"grs_mainglow.png" = {diffuse_map = "grs_mainglow.png"; illumination_map = "grs_mainglow_e.png"; shininess = 0; specular_color = (0.0,0.0,0.0,0.0);};};
+		materials = {"grs_mainglow.png" = {
+			diffuse_map = "grs_mainglow.png";
+			illumination_map = "grs_mainglow_e.png";
+			shininess = 0;
+			specular_color = (0.0,0.0,0.0,0.0);
+			vertex_shader = "lib_simple.vs";
+			fragment_shader = "grs_mainglow.fragment";
+			textures = ("grs_mainglow.png","grs_mainglow_e.png");
+			uniforms = {
+				uDiffuseMap={type="texture";value=0;};
+				uIlluminationMap={type="texture";value=1;};
+				uFuel={binding = "fuel";};
+				uTime = "timeElapsedSinceSpawn";
+				uRange = {binding = "rangeToPrimaryTarget";};
+				uHostile = {binding = "hasHostileTarget";};
+			};
+		};};
 		model = "grs_mainglow.dat";
 		name = "Glow";
 		roles = "grs_mainglow";
-		shaders = {"grs_mainglow.png" = {
-			vertex_shader = "grs_reactor.vertex";
-			fragment_shader = "grs_mainglow.fragment";
-			textures = ("grs_mainglow.png","grs_mainglow_e.png");
-			uniforms = {uDiffuseMap={type="texture";value=0;}; uIlluminationMap={type="texture";value=1;};
-				uFuel={binding = "fuel";}; uTime = "timeElapsedSinceSpawn";
-				uRange = {binding = "rangeToPrimaryTarget";}; uHostile = {binding = "hasHostileTarget";};};};};
-	};
-	"grs_platforms" = {
-		ai_type = "nullAI.plist";
-		materials = {"grs_platforms.png" = {diffuse_map = "grs_platforms.png"; normal_map = "grs_platforms_n.png";};};
-		model = "grs_platforms.dat";
-		name = "Platforms";
-		roles = "grs_platforms";
 	};
 	"grs_reactor" = {
 		ai_type = "nullAI.plist";
-		materials = {"grs_reactor.png" = {diffuse_map = "grs_reactor.png"; normal_map = "grs_reactor_n.png"; illumination_map = "grs_reactor.png";};};
+		materials = {"grs_reactor.png" = {
+			diffuse_map = "grs_reactor.png";
+			normal_map = "grs_reactor_n.png";
+			illumination_map = "grs_reactor.png";
+			shininess = 99;
+			gloss = 0.6;
+		};};
 		model = "grs_reactor.dat";
 		name = "Reactor";
 		roles = "grs_reactor";
-		rotational_velocity = "1 0 -0.03 0";
-		shaders = {"grs_reactor.png" = {
-			vertex_shader = "grs_reactor.vertex";
-			fragment_shader = "grs_reactor.fragment";
-			textures = ("grs_reactor.png","grs_reactor_n.png","grs_reactor.png");
-			uniforms = {uDiffuseMap={type="texture";value=0;}; uNormalMap={type="texture";value=1;}; uIlluminationMap={type="texture";value=2;};};};};
-	};
-	"grs_living" = {
-		ai_type = "nullAI.plist";
-		materials = {"grs_living.png" = {diffuse_map = "grs_living.png"; normal_map = "grs_living_n.png"; emission_map = "grs_living_e.png";};};
-		model = "grs_living.dat";
-		name = "Living";
-		roles = "grs_living";
+		rotational_velocity = "0.99955 0 -0.0299955 0";
 	};
 	"grs_ani" = {
 		ai_type = "nullAI.plist";
-		materials = {"grs_screen.png" = {diffuse_map = "grs_screen.png";};};
+		materials = {"grs_screen.png" = {
+			diffuse_map = "grs_screen.png";
+			vertex_shader = "grs_screen_ani.vertex";
+			fragment_shader = "grs_screen_ani.fragment";
+			textures = ({name="grs_screenani.png"; mag_filter="nearest"; repeat_t="yes";});
+			uniforms = {
+				uDiffuseMap = {type="texture";value=0;};
+				uTime="timeElapsedSinceSpawn";
+			};
+		};};
 		model = "grs_screen.dat";
 		name = "Screen";
 		roles = "grs_ani";
-		shaders = {"grs_screen.png" = {vertex_shader = "grs_screen_ani.vertex"; fragment_shader = "grs_screen_ani.fragment";
-			textures = ({name="grs_screenani.png"; mag_filter="nearest"; repeat_t="yes";});
-			uniforms = {uDiffuseMap = {type="texture";value=0;}; uTime="timeElapsedSinceSpawn";};};};
 	};
 }

@@ -7,9 +7,9 @@
 		"COURSE_OK" = ("setSpeedFactorTo: 0.5", performFlyToRangeFromDestination);
 		"WAYPOINT_SET" = ("setAITo: gotoWaypointAI.plist");
 		"DESIRED_RANGE_ACHIEVED" = ("sendScriptMessage: releaseBuoyW", "setStateTo: MOVE_OUT");
-			"EXITED WITCHSPACE" = (landOnPlanet);
+		"EXITED WITCHSPACE" = (landOnPlanet);
 		"ATTACKED" = (fightOrFleeHostiles);
-			"INCOMING_MISSILE" = (fireECM);
+		"INCOMING_MISSILE" = (fireECM);
 		"LAUNCHED OKAY" = ("setStateTo: CLEAR_LAUNCHPATH");
 		RESTARTED = ("setCoordinates: wpu 0 0 0.0", setDestinationFromCoordinates, "setDesiredRangeTo: 100.0", "setSpeedFactorTo: 0.6", checkCourseToDestination, "pauseAI: 10.0");
 		UPDATE = ("setCoordinates: wpu 0 0 0.0", setDestinationFromCoordinates, "setDesiredRangeTo: 100.0", "setSpeedFactorTo: 0.6", checkCourseToDestination, "pauseAI: 10.0");
@@ -17,7 +17,7 @@
 	"MOVE_OUT" = {
 		ENTER = (switchLightsOff, setDestinationToCurrentLocation, "setDesiredRangeTo: 1500.0", performFlyToRangeFromDestination, "setSpeedFactorTo: 0.0");
 		"ATTACKED" = (fightOrFleeHostiles);
-			"INCOMING_MISSILE" = (fireECM);
+		"INCOMING_MISSILE" = (fireECM);
 		"WITCHSPACE OKAY" = ();
 		"WITCHSPACE BLOCKED" = (setTargetToFoundTarget, setDestinationWithinTarget, "setDesiredRangeTo: 5000.0", performFlyToRangeFromDestination);
 		"WITCHSPACE UNAVAILABLE" = ("switchAITo: route1TraderAI.plist");
@@ -36,18 +36,18 @@
 		"WAYPOINT_SET" = ("setAITo: gotoWaypointAI.plist");
 		"DESIRED_RANGE_ACHIEVED" = ("setStateTo: RELEASE_N");
 		"ATTACKED" = (fightOrFleeHostiles);
-			"INCOMING_MISSILE" = (fireECM);
+		"INCOMING_MISSILE" = (fireECM);
 		RESTARTED = (setDestinationToStationBeacon, "setDesiredRangeTo: 20.0", "setSpeedFactorTo: 1.0", checkCourseToDestination, "pauseAI: 10.0");
 		UPDATE = (setDestinationToStationBeacon, "setDesiredRangeTo: 20.0", "setSpeedFactorTo: 1.0", checkCourseToDestination, "pauseAI: 10.0");
 	};
 	"RELEASE_N" = {
 		ENTER = (performHold, "pauseAI: 5.0");
 		"ATTACKED" = (fightOrFleeHostiles);
-			"INCOMING_MISSILE" = (fireECM);
+		"INCOMING_MISSILE" = (fireECM);
 		UPDATE = ("sendScriptMessage: releaseBuoyN", "setStateTo: MOVE_OUT");
 	};
 	"DISAPPEAR" = {
-		ENTER = ("pauseAI: 10.0", landOnPlanet);
+		ENTER = ("pauseAI: 1.0", landOnPlanet);
 		UPDATE = ("pauseAI: 10.0", landOnPlanet);
 	};
 	"GO_TO_STATION" = {

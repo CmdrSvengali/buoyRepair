@@ -14,16 +14,7 @@
       location = "group:Config">
    </FileRef>
    <FileRef
-      location = "group:Info.plist">
-   </FileRef>
-   <FileRef
       location = "group:Models">
-   </FileRef>
-   <FileRef
-      location = "group:Music">
-   </FileRef>
-   <FileRef
-      location = "group:requires.plist">
    </FileRef>
    <FileRef
       location = "group:Scripts">

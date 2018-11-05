@@ -3,7 +3,7 @@
 	};
 	"GOTO_POSITION" = {
 		ENTER = ("setSpeedFactorTo: 1.0", "pauseAI: 3.0");
-			"EXITED WITCHSPACE" = (landOnPlanet);
+		"EXITED WITCHSPACE" = (landOnPlanet);
 		"LAUNCHED OKAY" = ("setStateTo: GOTO_POSITION_G");
 	};
 	"MOVE_OUT" = {
@@ -30,7 +30,7 @@
 		UPDATE = ("setStateTo: MOVE_OUT", "sendScriptMessage: releaseBuoyG");
 	};
 	"DISAPPEAR" = {
-		ENTER = ("pauseAI: 10.0", landOnPlanet);
+		ENTER = ("pauseAI: 1.0", landOnPlanet);
 		UPDATE = ("pauseAI: 10.0", landOnPlanet);
 	};
 }
