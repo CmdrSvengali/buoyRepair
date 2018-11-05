@@ -5,8 +5,9 @@ this.copyright = "(C)2008-2011 the autors.";
 this.description = "ship for repairing Witchpoint & Station Buoy";
 this.version   = "1.3.3";
 
-this.buoy = new Array();
+this.buoy = [];
 this.segmentName = "Navigation Buoy Segment";
+this.$noTwitch = 0;
 
 this.shipSpawned = function ()
 {
@@ -106,29 +107,30 @@ this.addBuoy = function (buoyRole)
 	buoy.position = this.ship.position.add(this.ship.heading.multiply(this.ship.subEntities[2].position.z));
 }
 
-this.releaseBuoyW = function ()
+this.releaseBuoyW = function()
 {
+	if(this.$noTwitch) return;
 	worldScripts.buoyRepair.switch(this.ship, "Navigation Buoy", "repaired-grs-buoy-witchpoint", "MOVE_OUT");
-}
-
-this.releaseBuoyG = function ()
+	this.$noTwitch = 1;
+};
+this.releaseBuoyG = function()
 {
+	if(this.$noTwitch) return;
 	worldScripts.buoyRepair.switch(this.ship, "Navigation Buoy", "grs-factory-buoy", "GO_TO_STATION");
 	if (this.ship.subEntities.length < 3 && worldScripts.buoyRepair.grsStation) worldScripts.buoyRepair.grsStation.reactToAIMessage("GRS_G-BUOY_DIED");
-}
-
-this.releaseBuoyN = function ()
+	this.$noTwitch = 1;
+};
+this.releaseBuoyN = function()
 {
-	if (Math.random() < 0.7)
-    {
-        worldScripts.buoyRepair.switch(this.ship, this.segmentName, "repaired-grs-buoy", "DOCK_AT_MAIN_STATION");
-    }
-	else
-    {
+	if(this.$noTwitch) return;
+	if (Math.random() < 0.7){
+		worldScripts.buoyRepair.switch(this.ship, this.segmentName, "repaired-grs-buoy", "DOCK_AT_MAIN_STATION");
+	} else {
 		worldScripts.buoyRepair.switch(this.ship, this.segmentName, "repaired-grs-buoy", "MOVE_OUT");
 		system.addShips("repairBuoyTuggerE", 1);
-    }
-}
+	}
+	this.$noTwitch = 1;
+};
 
 this.foldBuoy = function ()
 {
