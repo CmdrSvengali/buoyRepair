@@ -158,33 +158,27 @@
 		weapon_position_aft = "0 17.25 -108.25"; weapon_position_forward = "0 16 115"; weapon_position_port = "-23.5 3.5 0"; weapon_position_starboard = "32.5 3.5 0";
 	};
 	"grs_cobra3_redux1" = {
-		aft_eject_position = "0 15.5 -33";
 		ai_type = "grsDockerAI.plist";
 		cargo_type = "CARGO_NOT_CARGO";
 		energy_recharge_rate = 3;
-		exhaust = ("-19 0 -32.5 15 7.5 12.5", "19 0 -32.5 15 7.5 12.5");
-		forward_weapon_type = "WEAPON_BEAM_LASER";
 		fuel = 70;
 		has_ecm = 0.95;
 		has_escape_pod = 0.95;
 		has_scoop = 0.95;
 		likely_cargo = 3;
+		like_ship = "cobra3-alternate";
 		max_cargo = 35;
 		max_energy = 250;
 		max_flight_pitch = 1; max_flight_roll = 2;
 		max_flight_speed = 320;
-		missile_launch_position = "0 -4.5 16.5";
 		missiles = 3;
-		model = "cobra3_redux1.dat";
 		max_flight_pitch = 0.5;
 		max_flight_roll = 1.2;
-		name = "Cobra Mark";
 		roles = "buoy_repair_docker";
 		script = "buoyRepairDocker.js";
 		script_info = {grs_dockinglength = 900;};
 		thrust = 32;
 		weapon_energy = 15;
-		weapon_position_aft = "0 0 -32.5"; weapon_position_forward = "0 0 27.5"; weapon_position_port = "-40 2.17 -4.33"; weapon_position_starboard = "40 2.17 -4.33";
 	};
 	"grs_controller" = {
 		ai_type = "grsStationControlAI.plist";
@@ -277,7 +271,7 @@
 		beacon = "N0100 Navigation Buoy";
 		like_ship = "grs_buoy-base";
 		max_flight_pitch = 0.3; max_flight_roll = 0.2;
-		model = "buoy.dat";
+		model = "grs_buoy.dat";
 		name = "Navigation Buoy";
 		roles = "buoy(0) repaired-grs-buoy";
 		scan_class = "CLASS_BUOY";
@@ -412,7 +406,7 @@
 		has_scoop = 0;
 		has_shipyard = 1;
 		market = "repaired-buoy-station";
-		materials = {"grs_main.png" = {diffuse_map = "grs_main.png"; normal_map = "grs_main_n.png"; illumination_map = {name="grs_main.png"; extract_channel="a";};};};
+		materials = {"grs_main.png" = {diffuse_map = "grs_main.png"; normal_map = "grs_main_n.png"; emission_map = "grs_main_e.png";};};
 		max_defense_ships = 3;
 		max_energy = 50000;
 		max_flight_pitch = 0; max_flight_roll = 0;
@@ -457,21 +451,21 @@
 	};
 	"grs_bay" = {
 		ai_type = "nullAI.plist";
-		materials = {"grs_bay.png" = {diffuse_map = "grs_bay.png"; illumination_map = "grs_bay.png"; shininess = 0; specular_color = (0.0,0.0,0.0,0.0);};};
+		materials = {"grs_bay.png" = {diffuse_map = "grs_bay_shadow.png"; illumination_map = "grs_bay_shadow.png"; shininess = 0; specular_color = (0.0,0.0,0.0,0.0);};};
 		model = "grs_bay.dat";
 		name = "Bay";
 		roles = "grs_bay";
 	};
 	"grs_mainglow" = {
 		ai_type = "nullAI.plist";
-		materials = {"grs_mainglow.png" = {diffuse_map = "grs_mainglow.png"; illumination_map = {name="grs_mainglow.png"; extract_channel="a";}; shininess = 0; specular_color = (0.0,0.0,0.0,0.0);};};
+		materials = {"grs_mainglow.png" = {diffuse_map = "grs_mainglow.png"; illumination_map = "grs_mainglow_e.png"; shininess = 0; specular_color = (0.0,0.0,0.0,0.0);};};
 		model = "grs_mainglow.dat";
 		name = "Glow";
 		roles = "grs_mainglow";
 		shaders = {"grs_mainglow.png" = {
 			vertex_shader = "grs_reactor.vertex";
 			fragment_shader = "grs_mainglow.fragment";
-			textures = ("grs_mainglow.png","grs_mainglow.png");
+			textures = ("grs_mainglow.png","grs_mainglow_e.png");
 			uniforms = {uDiffuseMap={type="texture";value=0;}; uIlluminationMap={type="texture";value=1;};
 				uFuel={binding = "fuel";}; uTime = "timeElapsedSinceSpawn";
 				uRange = {binding = "rangeToPrimaryTarget";}; uHostile = {binding = "hasHostileTarget";};};};};
@@ -498,7 +492,7 @@
 	};
 	"grs_living" = {
 		ai_type = "nullAI.plist";
-		materials = {"grs_living.png" = {diffuse_map = "grs_living.png"; normal_map = "grs_living_n.png"; illumination_map = {name="grs_living.png"; extract_channel="a";};};};
+		materials = {"grs_living.png" = {diffuse_map = "grs_living.png"; normal_map = "grs_living_n.png"; emission_map = "grs_living_e.png";};};
 		model = "grs_living.dat";
 		name = "Living";
 		roles = "grs_living";

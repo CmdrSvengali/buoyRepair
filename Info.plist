@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleGetInfoString</key>
-	<string>Buoy Repair 1.3.3</string>
+	<string>Buoy Repair 1.3.4</string>
 	<key>CFBundleName</key>
 	<string>Buoy Repair</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.3.3</string>
+	<string>1.3.4</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Eric Walch &amp; Svengali</string>
 </dict>

@@ -23,7 +23,7 @@ this.shipSpawned = function ()
 	delete this.shipSpawned;
 }
 
-this.shipDockedWithStation= function (station)
+this.shipDockedWithStation = function (station)
 {
 	if (this.hasValidStation()) worldScripts.buoyRepair.shuttle--;
 }
@@ -41,6 +41,12 @@ this.shipApproachingPlanetSurface = function ()
 this.shipDied = function (whom, why)
 {
 	if (worldScripts.buoyRepair.logging) log("buoyRepair", this.ship.displayName + " was killed by a " + (whom.displayName?whom.displayName:whom) + ", because of " + why);
+	if (worldScripts.buoyRepair.grsStation) worldScripts.buoyRepair.shuttle--;
+}
+
+this.shipLandedOnPlanet = function (planet)
+{
+	if (worldScripts.buoyRepair.logging) log("buoyRepair", this.ship.displayName + " landed on " + planet);
 	if (worldScripts.buoyRepair.grsStation) worldScripts.buoyRepair.shuttle--;
 }
 

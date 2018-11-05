@@ -3,7 +3,7 @@ this.name      = "buoyRepairShip";
 this.author    = "eric walch";
 this.copyright = "(C)2008-2011 the autors.";
 this.description = "ship for repairing Witchpoint & Station Buoy";
-this.version   = "1.3.2";
+this.version   = "1.3.3";
 
 this.buoy = new Array();
 this.segmentName = "Navigation Buoy Segment";

@@ -3,7 +3,7 @@ this.name      = "buoyRepairBuoy";
 this.author    = "eric walch";
 this.copyright = "(C)2008-2011 the autors.";
 this.description = "Buoy script for calling help";
-this.version   = "1.3";
+this.version   = "1.3.3";
 
 this.shipBeingAttacked = function (whom) {
 	// add police to system

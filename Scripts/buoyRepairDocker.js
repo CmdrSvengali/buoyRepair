@@ -4,7 +4,7 @@ this.name      = "buoyRepairDocker";
 this.author    = "eric walch";
 this.copyright = "� 2008 eric walch.";
 this.description = "Clamp Docking";
-this.version   = "1.3";
+this.version   = "1.3.3";
 
 this.shipSpawned = function ()
 {

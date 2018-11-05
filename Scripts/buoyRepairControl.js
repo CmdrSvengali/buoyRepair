@@ -4,7 +4,7 @@ this.name      = "buoyRepairController";
 this.author    = "eric walch";
 this.copyright = "� 2008 the autors.";
 this.description = "Station control vessel";
-this.version   = "1.3";
+this.version   = "1.3.3";
 
 this.shipSpawned = function ()
 {

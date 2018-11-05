@@ -4,7 +4,7 @@ this.name      = "buoyRepairCable";
 this.author    = "eric walch";
 this.copyright = "� 2011 the autors.";
 this.description = "Make sure that when the cable explodes, no other towing stuff survives";
-this.version   = "1.3.2";
+this.version   = "1.3.3";
 
 this.shipDied = function ()
 {

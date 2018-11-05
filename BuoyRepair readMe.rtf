@@ -1,0 +1,134 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1347\cocoasubrtf570
+\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;}
+\paperw11900\paperh16840\vieww21900\viewh14520\viewkind0
+\deftab720
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720
+
+\f0\b\fs36 \cf0 Repair Buoy\
+
+\b0\fs24 Authors: Svengali (models+shaders), Eric Walch (scripting)\
+version 1.3.4, June 2015\
+\
+
+\fs28 Introduction
+\fs26 \
+\pard\pardeftab720
+
+\fs24 \cf0 \
+Trading goods between worlds is an extremely dangerous and hard job, and most trading companies are losing\
+ships through accidents, pirate ambushes and thargoid attacks. In 2084003 GCT (Galactic Coordinated Time) /\
+3135 MGMT (Modern Galactic Mean Time) a number of traders\'92 guilds decided to counteract to the increasing\
+number of accidents by establishing the space buoys as a marker for safe space lanes.\
+\
+But systems are always slow in replacing destroyed navigation buoys. It is very frustrating when you are at the\
+main station and have to meet a ship on the way to the witchpoint when the witchpoint buoy is destroyed. It is\
+almost impossible to orient yourself in this situation. The authors (Cmdrs. Walch and Svengali) found this very\
+annoying and made a little investigation of the reasons. The main reason seemed to be a systemwide shortage\
+of buoys, so it always took much time to bring in a new buoy from far away and install it.\
+\
+In most cases the pilot was already in an other system when the replacement arrived.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720
+\cf0 \
+
+\fs28 Buoy Factories.
+\fs26 \
+
+\fs24 \
+Both authors looked for systems that were prepared to build buoys for a reasonable price. These were found\
+with industrial systems with a medium technical level. Systems of low technical level didn\'92t have the skills\
+to build the buoys and those of high level found it to inferior work to do. Another selection criterium was the\
+availability of metal ore on the planet so alloys could be extracted from it. The buoys themselves are not strong\
+enough to lift off a planet\'92s surface, so they have to be assembled in space.\
+\
+Cmdr. Svengali designed a whole assembly station for this purpose. Parts for the buoys are pre-fabricated\
+on the planet surface and then flown in to the assembly station with shuttles. Those factories are in a constant\
+need of alloys and will also buy alloys flown in from other systems.\
+\
+The assembly stations have a technologically advanced docking bay sealing: A force-field that keeps the air\
+inside and still allows for a ship to pass trough. This makes it possible to load / unload ships with normal clothing\
+instead of using pressurised suits. The disadvantage is that an approaching pilot has no visible view of the landing bay\
+and has to use special guiding technology to find the right flight path (or use his docking computer).\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720
+\cf2 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720
+
+\fs28 \cf0 Buoy Transport vehicles.
+\fs26 \
+
+\fs24 \
+Buoys are of the size of a medium ship like a Cobra. This means they don\'92t fit in the cargo bay of a normal ship.\
+It would need a spaceship carrier to transport them. This was rejected as too expensive, so we choose for the lower-cost\
+solution of towing the buoys. For this job Cmdr. Svengali designed a powerful tugship that is capable of delivering\
+the cargo at a reasonable speed.\
+
+\fs26 \
+
+\fs28 Distribution System
+\b .
+\b0\fs26 \
+
+\fs24 \
+Meanwhile Cmdr. Walch built a distribution system to send newly-assembled buoys from the factory to other systems\
+before they are actually needed. Once docked in another system, the replacement buoys are stored in a safe place\
+in the main stations. Now, when a buoy gets destroyed, a new one can be brought into place without much delay.\
+\
+When the main station buoy needs to be replaced, a new one can be retrieved directly from the station. When a\
+witchpoint beacon is destroyed a new one will be brought in by hyperspace jumping with a buoy from an adjacent system.\
+\
+
+\fs28 Large Traders and fuel ships
+\fs24 \
+\
+The GRS station has facilities to accommodate large traders that are to big to dock at a regular station. They can dock at\
+one of the two external docking bays. From here on normal sized traders can deliver the goods to the local main station\
+or a station in an adjacent system.\
+\
+GRS also has build some large fuel ships that scoop plasma from the sun, transform it into quirium and deliver this fuel\
+to the GRS station for further distribution throughout the galaxy.\
+\
+
+\fs28 Instalation.
+\b\fs24 \
+
+\b0 \
+Take the file "buoyRepair.OXP" and put it in Oolite\'92s AddOns folder. After a restart the new factories are in place\
+and the distribution of the replacement buoys will start. Now, when a buoy gets defect, a replacement sequence\
+is started within 2 minutes. Sometimes replacement takes longer when traffic around stations is too busy, but this\
+is dependent on the local station manager\'92s ability to schedule dockings and launches.\
+\
+
+\fs28 Version requirement
+\b .
+\b0\fs26 \
+
+\fs24 \
+This OXP needs Oolite 1.75.1 to work.\
+No dependencies, but...\
+  if Transports.oxp is installed the Woma will be used too.\
+  if Aquatics.oxp is installed the Hawksbill and ManOWar will be used too.\
+  if BGS-A or BGS-M is installed a music file will be used when docked at a buoyRepair Facility.\
+\
+Version history\
+1.3.4 Added the shaders that were lost in version 1.3.3\
+1.3.3 Added old Anaconda & Boa texture that were removed from Oolite 1.80\
+1.3.2 Minor fixes.\
+1.3.1 External dockers changed, shader fix and buoy (un)folding.\
+1.3 New station to reduce shader swapping and music.\
+1.02.8 Fix to avoid running startUp twice when OXPConfig is used.\
+1.02.7 Tweaks for Oolite v1.75.\
+1.02.6 Workaround for ATI's cards and cleanups.\
+1,02.5 Fix in shipyard. Previous versions can crash on Oolite 1.73.\
+1.02.4 Minor fixes. Fully tested the Oolite 1.73 release.\
+1.02.3 Minor fixes. Prepared for the Oolite 1.73 release. Removed incompatibilities with oxps that change Oolite core ships (e.g. neolite.oxp).\
+1.02.2 Minor fixes. Recognises now bigShips.oxp.\
+1.02	Added big fuel ships and big traders.\
+1.01	Bug fixes and improved station.\
+1.00	First release.\
+\
+----------\
+A special thanks to Zieman for his help to find solutions for ATI users.\
+\pard\pardeftab720
+\cf0 Thanks to Murgh for the low cost idea of towing other ships instead of storing them in a cargo bay.\
+(see his tugs.OXP, 1 march 2006)\
+}

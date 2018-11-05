@@ -1,4 +1,6 @@
 uniform sampler2D uDiffuseMap;
+uniform float uTime;
+varying vec3 vNormal, vPos;
 varying vec4 vFrameTexCoords;
 varying float vFade;
 

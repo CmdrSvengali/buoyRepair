@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:manifest.plist">
+   </FileRef>
+   <FileRef
+      location = "group:BuoyRepair readMe.rtf">
+   </FileRef>
+   <FileRef
+      location = "group:AIs">
+   </FileRef>
+   <FileRef
+      location = "group:Config">
+   </FileRef>
+   <FileRef
+      location = "group:Info.plist">
+   </FileRef>
+   <FileRef
+      location = "group:Models">
+   </FileRef>
+   <FileRef
+      location = "group:Music">
+   </FileRef>
+   <FileRef
+      location = "group:requires.plist">
+   </FileRef>
+   <FileRef
+      location = "group:Scripts">
+   </FileRef>
+   <FileRef
+      location = "group:Shaders">
+   </FileRef>
+   <FileRef
+      location = "group:Textures">
+   </FileRef>
+</Workspace>
