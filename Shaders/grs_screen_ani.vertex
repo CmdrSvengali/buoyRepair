@@ -1,5 +1,4 @@
 uniform float uTime;
-varying vec3 vNormal, vPos;
 varying vec4 vFrameTexCoords;
 varying float vFade;
 const float kDisplayTime = 14.0;
@@ -20,8 +19,6 @@ void CrossFade(in vec2 virtualPixelCoord)
 }
 void main()
 {
-	vNormal = normalize(gl_NormalMatrix * gl_Normal);
-	vPos = vec3(gl_ModelViewMatrix * gl_Vertex);
 	gl_TexCoord[0] = gl_TextureMatrix[0] * gl_MultiTexCoord0;
 	CrossFade(gl_TexCoord[0].st);
 	gl_Position = ftransform();
