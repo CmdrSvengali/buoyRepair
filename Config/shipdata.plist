@@ -318,7 +318,6 @@
 		name = "Navigation Buoy Segment";
 		roles = "grs_buoy_segment";
 		script_info = {can_explode = yes;};
-		smooth = yes;
 		thrust = 100;
 		unpiloted = yes;
 	};
