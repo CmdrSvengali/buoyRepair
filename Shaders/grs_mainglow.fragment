@@ -1,4 +1,3 @@
-varying vec3 vEyeVector,vLight1Vector;
 varying vec2 vTexCoord;
 uniform sampler2D uDiffuseMap,uIlluminationMap;
 uniform int uFuel;
