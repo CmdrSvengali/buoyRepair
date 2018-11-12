@@ -77,7 +77,7 @@
 		heat_insulation = 8;
 		materials = {"grs_guanako.png" = {
 			diffuse_map = "grs_guanako.png";
-			illumination_map = {name="grs_guanako.png"; extract_channel="a";};
+			illumination_map = {name="grs_guanako_n.png"; extract_channel="a";};
 			normal_map = "grs_guanako_n.png";
 			shininess = 87;
 			gloss = 0.6;
