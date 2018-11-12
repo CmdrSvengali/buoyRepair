@@ -1,0 +1,20 @@
+(
+	{
+		ship = "grs_controller";
+		class = "ship";
+		summary = "Blub";
+		description = "Unarmed inspection ship.";
+	},
+	{
+		ship = "grs_guanako";
+		class = "ship";
+		summary = "Blub";
+		description = "Fuel transport ship.";
+	},
+	{
+		ship = "GRS-Station";
+		class = "station";
+		summary = "Buoy Repair Station.";
+		description = "Buoy assembly station with advanced docking bay sealing. These stations can be found in industrial systems with a medium technical level.";
+	}
+)

@@ -95,6 +95,7 @@
 		subentities = ({type = flasher; size = 30; color = {hue = 180;}; frequency = 0; phase = 0; position = (23,7,-144);},
 			{type = flasher; size = 30; color = {hue = 180;}; frequency = 0; phase = 0; position = (-23,7,-144);});
 		thrust = 8;
+		weapon_facings = 1;
 		weapon_position_forward = "0 -22.5 263";
 	};
 	"grs_guanako_trader" = {
@@ -215,6 +216,7 @@
 			{type = flasher; size = 5; colors = ({hue = 22;},{hue = 60;}); frequency = 5; phase = 0.9; position = (0,-7,11);},
 			{type = ball_turret; subentity_key = "grs_controller_turret"; orientation = (1,0,0,0); position = (0,-3.6,14.7); weapon_energy = 0.0;});
 		thrust = 15;
+		weapon_facings = 0;
 		weapon_energy = 0;
 	};
 	"grs_controller_turret" = {
@@ -356,7 +358,8 @@
 		subentities = ({type = flasher; size = 5; colors = ({hue = 22;},{hue = 60;}); frequency = 5; phase = 0.2; position = (-17,28.2,50.3);},
 			{type = flasher; size = 5; colors = ({hue = 22;},{hue = 60;}); frequency = 5; phase = 0.7; position = (17,28.2,50.3);});
 		thrust = 15;
-		weapon_position_aft = "0 10 -65"; weapon_position_forward = "0 0 40"; weapon_position_port = "-26.67 0 4.33"; weapon_position_starboard = "26.67 0 4.33";
+		weapon_facings = 1;
+		weapon_position_forward = "0 0 40";
 	};
 	"repaired-buoytuggerE" = {
 		ai_type = "buoyRepairShipEAI.plist";
