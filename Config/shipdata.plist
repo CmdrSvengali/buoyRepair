@@ -194,7 +194,7 @@
 		likely_cargo = 1;
 		materials = {"grs_controller.png" = {
 			diffuse_map = "grs_controller.png";
-			specular_map = {name="grs_controller.png"; extract_channel="a";};
+			illumination_map = {name="grs_controller.png"; extract_channel="r";};
 			normal_map = "grs_controller_n.png";
 			shininess = 87;
 			gloss = 0.6;
@@ -340,9 +340,8 @@
 		materials = {"grs_armadillo.png" = {
 			shininess = 67;
 			normal_map = "grs_armadillo_n.png";
-			illumination_map = "grs_armadillo.png";
+			illumination_map = {name="grs_armadillo.png";extract_channel="r";};
 			diffuse_map = "grs_armadillo.png";
-			specular_map = {name="grs_armadillo_n.png";extract_channel="a";};
 			gloss = 0.5;
 		};};
 		max_cargo = 20;
