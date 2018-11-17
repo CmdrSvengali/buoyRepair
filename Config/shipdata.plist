@@ -6,8 +6,8 @@
 		like_ship = "oolite_template_buoy";
 		materials = {"target_metal.png" = {
 			diffuse_map = "grs_target_metal.png";
+			illumination_map = {name="grs_target_metal.png"; extract_channel="r"; min_filter = "linear";};
 			gloss = 0.7;
-			illumination_map = {name="grs_target_metal.png"; extract_channel="r";};
 			shininess = 110;
 		};};
 		roles = "grs-factory-buoy";
@@ -77,10 +77,11 @@
 		heat_insulation = 8;
 		materials = {"grs_guanako.png" = {
 			diffuse_map = "grs_guanako.png";
-			illumination_map = {name="grs_guanako_n.png"; extract_channel="a";};
-			normal_map = "grs_guanako_n.png";
-			shininess = 87;
+			illumination_map = {name="grs_guanako_n.png"; extract_channel="a"; min_filter = "linear";};
+			normal_map = {name="grs_guanako_n.png"; min_filter = "linear";};
+			specular_color = (0.5,0.5,0.5,1.0);
 			gloss = 0.6;
+			shininess = 87;
 		};};
 		max_cargo = 125;
 		max_energy = 1450;
@@ -195,10 +196,11 @@
 		likely_cargo = 1;
 		materials = {"grs_controller.png" = {
 			diffuse_map = "grs_controller.png";
-			illumination_map = {name="grs_controller.png"; extract_channel="r";};
-			normal_map = "grs_controller_n.png";
-			shininess = 87;
+			illumination_map = {name="grs_controller.png"; extract_channel="r"; min_filter="linear";};
+			normal_map = {name="grs_controller_n.png"; min_filter="linear";};
+			specular_color = (0.5,0.5,0.5,1.0);
 			gloss = 0.6;
+			shininess = 87;
 		};};
 		max_cargo = 1;
 		max_energy = 550;
@@ -273,8 +275,8 @@
 		like_ship = "grs_buoy-base";
 		max_flight_pitch = 0.3; max_flight_roll = 0.2;
 		materials = {"grs_target_metal.png" = {
+			illumination_map = {name="grs_target_metal.png"; extract_channel="r"; min_filter = "linear";};
 			gloss = 0.7;
-			illumination_map = {name="grs_target_metal.png"; extract_channel="r";};
 			shininess = 110;
 		};};
 		model = "grs_buoy.dat";
@@ -293,8 +295,8 @@
 		max_flight_pitch = 0.3; max_flight_roll = 0.2;
 		materials = {"target_metal.png" = {
 			diffuse_map = "grs_target_metal.png";
+			illumination_map = {name="grs_target_metal.png"; extract_channel="r"; min_filter = "linear";};
 			gloss = 0.7;
-			illumination_map = {name="grs_target_metal.png"; extract_channel="r";};
 			shininess = 110;
 		};};
 		roles = "buoy-witchpoint(0.1) repaired-grs-buoy-witchpoint";
@@ -308,8 +310,8 @@
 		energy_recharge_rate = 2;
 		materials = {"grs_target_metal.png" = {
 			diffuse_map = "grs_target_metal.png";
+			illumination_map = {name="grs_target_metal.png"; extract_channel="r"; min_filter = "linear";};
 			gloss = 0.7;
-			illumination_map = {name="grs_target_metal.png"; extract_channel="r";};
 			shininess = 110;
 		};};
 		max_energy = 250;
@@ -340,11 +342,12 @@
 		has_scoop = 1;
 		likely_cargo = 1;
 		materials = {"grs_armadillo.png" = {
-			shininess = 67;
-			normal_map = "grs_armadillo_n.png";
-			illumination_map = {name="grs_armadillo.png";extract_channel="r";};
 			diffuse_map = "grs_armadillo.png";
+			normal_map = {name="grs_armadillo_n.png"; min_filter = "linear";};
+			illumination_map = {name="grs_armadillo.png"; extract_channel="r"; min_filter = "linear";};
+			specular_color = (0.5,0.5,0.5,1.0);
 			gloss = 0.5;
+			shininess = 67;
 		};};
 		max_cargo = 20;
 		max_energy = 750;
@@ -439,20 +442,23 @@
 		materials = {
 			"grs_main.png" = {
 				diffuse_map = "grs_main.png";
-				normal_map = "grs_main_n.png";
-				emission_map = "grs_main_e.png";
-				shininess = 99; gloss = 0.6;
+				normal_map = {name = "grs_main_n.png"; min_filter = "linear";};
+				emission_map = {name = "grs_main_e.png"; min_filter = "linear";};
+				gloss = 0.62;
+				shininess = 32;
 			};
 			"grs_platforms.png" = {
 				diffuse_map = "grs_platforms.png";
-				normal_map = "grs_platforms_n.png";
-				shininess = 99; gloss=0.6;
+				normal_map = {name = "grs_platforms_n.png"; min_filter = "linear";};
+				gloss = 0.62;
+				shininess = 32;
 			};
 			"grs_living.png" = {
 				diffuse_map = "grs_living.png";
-				normal_map = "grs_living_n.png";
-				emission_map = "grs_living_e.png";
-				shininess = 99; gloss = 0.6;
+				normal_map = {name = "grs_living_n.png"; min_filter = "linear";};
+				emission_map = {name = "grs_living_e.png"; min_filter = "linear";};
+				gloss = 0.62;
+				shininess = 32;
 			};
 		};
 		max_defense_ships = 3;
@@ -534,10 +540,10 @@
 		ai_type = "nullAI.plist";
 		materials = {"grs_reactor.png" = {
 			diffuse_map = "grs_reactor.png";
-			normal_map = "grs_reactor_n.png";
-			illumination_map = "grs_reactor.png";
-			shininess = 99;
-			gloss = 0.6;
+			normal_map = {name = "grs_reactor_n.png"; min_filter = "linear";};
+			illumination_map = {name = "grs_reactor.png"; min_filter = "linear";};
+			gloss = 0.7;
+			shininess = 32;
 		};};
 		model = "grs_reactor.dat";
 		name = "Reactor";
